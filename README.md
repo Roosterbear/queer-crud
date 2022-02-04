@@ -7,7 +7,5 @@ __Framework:__ _Codeigniter_
 __Frontend:__ _CSS_, _Javascript_, _JQuery_, _Bootstrap_, _and more_
 __Database:__ _SQL Server_
 
-This project is different since I put the "C" part in one tab and the "RUD" part in another tab.
-Contains Fontawesome icons and a nice and intuitive view.
-
-
+This project is different because I put the "__C__" part in _one tab_ and the "__RUD__" part in _another tab_.
+It Contains __Fontawesome icons__ and a nice and intuitive view.
