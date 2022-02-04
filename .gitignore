@@ -5,8 +5,8 @@ composer.json
 contributing.md
 license.txt
 readme.rst
-
 application/.htaccess
 application/cache/
 application/libraries/db/
 application/libraries/UsuarioSITO.php
+.settings/
