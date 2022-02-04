@@ -1,0 +1,218 @@
+body{
+	font-size: 1.1em;
+}
+
+/* -------------------------- */
+/* Caracteristicas de botones */
+/* -------------------------- */
+.mtto-boton{
+	padding: 1rem;
+	border: solid 1px #999;
+	cursor:pointer;
+	font-size: 2rem;
+	color: #666;
+}
+
+.mtto-boton-enviar{
+	padding: 1.2rem 5rem;
+}
+
+.mtto-boton-enviar:hover{
+	background-color: #fff;
+}
+
+.fondo_verde{
+	background-color: #77D970;
+}
+
+.ocultar{
+	display:none;
+}
+
+
+.btn-footer{
+	cursor: pointer;
+}
+
+.btn-footer:hover{
+	color: #000;
+}
+
+/* -------------------------- */
+/* Caracteristicas de bloques */
+/* -------------------------- */
+.up5{
+	margin-top: 5rem;
+}
+
+
+/* -------------------------- */
+/* Caracteristicas de textos  */
+/* -------------------------- */
+.centrado{
+	position:relative;
+	text-align:center;
+}
+
+.tachar {
+    text-decoration: line-through;
+}
+
+.sin_tachar{
+	text-decoration: none;
+}
+
+.verde{
+	color: #1db954 !important;
+}
+
+.azul{
+	color: #2b95ef !important;
+}
+
+.gris{
+	color: #666 !important;
+}
+
+.rojo{
+	color: #c00 !important;
+}
+
+.mystrong{
+	font-weight: bold;
+}
+
+.myverystrong{
+	font-weight: bolder;
+}
+
+.myitalic{
+	font-style: italic;
+}
+
+.botones_footer{
+	text-align: center;
+}
+
+.text-footer{
+	text-align: center;
+	color: #555;
+	font-size: 1.2rem;
+	padding: 5px;
+	margin-right: 7px;
+}
+
+
+
+/* SWITCH */
+.labelSwitch{
+	font-size: 1.7rem;
+	color: #777;
+	display: inline-block;
+	margin-left: 5px;
+	vertical-align:super;
+}
+
+
+
+ /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+	vertical-align:sub;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(143, 140, 140);
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+input:checked + .slider {
+  background-color: #1db954;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #1db954;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 17px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+/*
+-- RESPONSIVE DESIGN --
+*/
+
+@media (min-width: 769px) {
+	h1{
+		font-size: 2.4em !important;
+	}
+
+	h2{
+		font-size: 2em !important;
+	}
+
+	h3{
+		font-size: 1.6em !important;
+	}
+
+	h4{
+		font-size: 1.2em !important;
+	}
+}
+
+@media (max-width: 768px) {
+	h1{
+		font-size: 1.6em !important;
+	}
+
+	h2{
+		font-size: 1.4em !important;
+	}
+
+	h3{
+		font-size: 1.2em !important;
+	}
+
+	h4{
+		font-size: 1em !important;
+	}
+}
