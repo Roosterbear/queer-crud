@@ -172,10 +172,14 @@ class Mantenimientos extends CI_Controller {
 		return true;
 	}
 
-	public function hayMantenimientos(){
-		$id = $_POST['id'];
-
-
+	public function hayMantenimientos(){		
+		if($_POST){
+			$id = $_REQUEST['id'];			
+		}else{
+			return false;
+		}		
+		
+		echo $this->mttos_util->utilidades->esteEquipoTieneMtto($id);
 	}
 
 
@@ -207,6 +211,8 @@ class Mantenimientos extends CI_Controller {
 		return $this->mttos_util->utilidades->getMantenimientos();
 	}
 
+	
+	
 	// Auxiliares
 	public function getEdificios(){
 		return $this->mttos_util->utilidades->getEdificios();

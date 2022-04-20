@@ -8,7 +8,7 @@ class Utilidades
 {
 
 	public $antivirus = ['ESET','Windows Defender','Otro'];
-	public $sistema = ['Windows 10 Pro', 'Windows 10 Home', 'Windows 8.1', 'Windows 8', 'Windows 7 Pro', 'Windows XP'];
+	public $sistema = ['Windows 11', 'Windows 10 Pro', 'Windows 10 Home', 'Windows 8.1', 'Windows 8', 'Windows 7 Pro', 'Windows XP'];
 	public $personal = ['Luis Fernando Perea Gallosso', 'Luis Daniel Herrera Mendez'];
 	public $ram = ['2 Gb','4 Gb','6 Gb','8 Gb', '12 Gb','16 Gb'];
 	public $disco = ['320 Gb', '500 Gb', '1 Tb'];
@@ -201,14 +201,21 @@ class Utilidades
 		global $DBSito;
 	
 		$sql = "delete from mtto_equipos where id_equipo = ".$id;
-	
-		$rs = $DBSito->Execute($sql);
+			
+		// Comentar para hacer pruebas y no borrar
+		//$rs = $DBSito->Execute($sql);
 	
 		return true;
 	}
 	
 	public function esteEquipoTieneMtto($id){
-		$sql = "select count(id_mantenimiento) as cuantos from mtto_mantenimientos where id_equipo =    ";
+		global $DBSito;
+		
+		$sql = "select count(id_mantenimiento) as cuantos from mtto_mantenimientos where id_equipo =    ".$id;
+		
+		$rs = $DBSito->Execute($sql);
+		
+		return $rs->fields['cuantos'];
 	}
 	
 	// Mantenimientos
@@ -217,8 +224,31 @@ class Utilidades
 	
 		$sql = "delete from mtto_mantenimientos where id_mantenimiento = ".$id;
 	
-		$rs = $DBSito->Execute($sql);
+		//$this->bajaDetalleMantenimiento($this->getDetalleMantenimiento($id));
+		
+		// Comentar para hacer pruebas y no borrar
+		//$rs = $DBSito->Execute($sql);
 	
+		return true;
+	}
+	
+	public function getDetalleMantenimiento($id){
+		global $DBSito;
+		
+		$sql = "select id_detalle_mantenimiento as id from mtto_mantenimientos where id_mantenimiento = ".$id;
+		
+		$rs = $DBSito->Execute($sql);
+		
+		return $rs->fields['id'];		
+	}
+	
+	public function bajaDetalleMantenimiento($id){
+		global $DBSito;
+		
+		$sql = "delete from mtto_detalles_mantenimiento where id_detalle_mantenimiento = ".$id;
+		
+		$rs = $DBSito->Execute($sql);
+		
 		return true;
 	}
 	
