@@ -202,7 +202,7 @@ class Utilidades
 	
 		$sql = "delete from mtto_equipos where id_equipo = ".$id;
 			
-		// Comentar para hacer pruebas y no borrar
+		// Comment to test and do not delete
 		//$rs = $DBSito->Execute($sql);
 	
 		return true;
@@ -226,7 +226,7 @@ class Utilidades
 	
 		//$this->bajaDetalleMantenimiento($this->getDetalleMantenimiento($id));
 		
-		// Comentar para hacer pruebas y no borrar
+		// Comment to test and do not delete
 		//$rs = $DBSito->Execute($sql);
 	
 		return true;
@@ -392,8 +392,8 @@ class Utilidades
 	
 	// Equipos
 	public function getEquipos(){
-		global $DBSito;
-
+		global $DBSito;	
+		
 		// id_equipo - equipo - inventario - responsable - area - nomenclatura
 		$sql = "select e.id_equipo
 				,m.descripcion_marca+' - '+mo.descripcion_modelo as equipo
@@ -412,6 +412,26 @@ class Utilidades
 		return $rs->getArray();
 	}
 
+	public function getEquipo($id){
+		global $DBSito;
+	
+		// id_equipo - equipo - inventario - responsable - area - nomenclatura
+		$sql = "select e.id_equipo
+				,m.descripcion_marca+' - '+mo.descripcion_modelo as equipo
+				,e.inventario
+				,e.responsable
+				,a.descripcion_area as area
+				,e.nomenclatura
+				from mtto_equipos e
+				inner join mtto_marcas m on m.id_marca = e.id_marca
+				inner join mtto_modelos mo on mo.id_modelo = e.id_modelo
+				inner join mtto_areas a on a.id_area = e.id_departamento
+				where id_equipo = ".$id;
+	
+		$rs = $DBSito->Execute($sql);
+	
+		return $rs->fields;
+	}
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
 	// Mantenimientos
@@ -420,9 +440,10 @@ class Utilidades
 	
 		// id_mantenimiento - fecha - area - equipo - tecnico
 		$sql = "select mt.id_mantenimiento
-				,mt.fecha_realizacion as fecha
-				,a.descripcion_area as area
+				,mt.fecha_realizacion as fecha				
 				,m.descripcion_marca+' - '+mo.descripcion_modelo as equipo
+				,e.responsable
+				,a.descripcion_area as area
 				,mt.tecnico
 				from mtto_mantenimientos mt
 				inner join mtto_equipos e on mt.id_equipo = e.id_equipo
@@ -437,6 +458,67 @@ class Utilidades
 		$rs = $DBSito->Execute($sql);
 	
 		return $rs->getArray();
+	}
+	
+	public function getMantenimiento($id){
+		global $DBSito;
+	
+		// id_mantenimiento - fecha - area - equipo - tecnico
+		$sql = "select mt.id_mantenimiento
+				,mt.fecha_realizacion as fecha
+				,m.descripcion_marca+' - '+mo.descripcion_modelo as equipo
+				,e.responsable
+				,a.descripcion_area as area
+				,mt.tecnico
+				from mtto_mantenimientos mt
+				inner join mtto_equipos e on mt.id_equipo = e.id_equipo
+				inner join mtto_marcas m on m.id_marca = e.id_marca
+				inner join mtto_modelos mo on mo.id_modelo = e.id_modelo
+				inner join mtto_areas a on a.id_area = e.id_departamento
+				where id_mantenimiento = ".$id;
+	
+	
+		$sql .= "";
+	
+		$rs = $DBSito->Execute($sql);
+	
+		return $rs->fields;
+	}
+	public function getMantenimientosHTML(){
+		
+	/*
+		<table class="table table-stripped table-condensed table-bordered table-hover ">
+        <tbody>
+          <tr>
+  		      <!-- id_mantenimiento - fecha - area - equipo - tecnico -->
+            <th class="text-center">No.</th>
+            <th class="text-center">Fecha</th>
+            <th class="text-center">Area</th>
+            <th class="text-center">Equipo</th>
+            <th class="text-center">Tecnico</th>
+            <!-- Botones -->
+            <th class="text-center">Editar</th>
+            <th class="text-center">Eliminar</th>
+          </tr>
+
+          <?php $cuenta_mantenimientos = 1; ?>
+          <?php foreach($mantenimientos as $m){ ?>
+            <?php echo '<tr id="row-mtto-'.$m['id_mantenimiento'].'">'; ?>
+            <?php echo '<td>'.$cuenta_mantenimientos.'</td>'; ?>
+            <td><?php echo $m['fecha'];?></td>
+            <td><?php echo $m['area'];?></td>
+            <td><?php echo $m['equipo'];?></td>
+            <td><?php echo $m['tecnico'];?></td>
+            <!-- Botones -->
+            <?php echo '<td id="editar-mtto-'.$m['id_mantenimiento'].'" class="text-center editar-mtto"><i class="fa fa-pencil fa-2x verde"/></i></td>'; ?>
+            <?php echo '<td id="borrar-mtto-'.$m['id_mantenimiento'].'" class="text-center borrar-mtto"><i class="fa fa-times fa-2x rojo"/></i></td>'; ?>
+            <?php echo '</tr>'; ?>
+            <?php $cuenta_mantenimientos++ ?>
+          <?php } ?>
+        </tbody>
+      </table>
+	*/
+		return 'probando...';	
 	}
 	
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

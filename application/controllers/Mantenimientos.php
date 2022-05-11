@@ -13,34 +13,38 @@ class Mantenimientos extends CI_Controller {
 	}
 
 	public function index(){
-		$data['fecha_hoy'] = $this->mttos_util->utilidades->getFechaHoy();
+		$data = $this->loadData();
+		
+		$this->load->view('header');
+		$this->load->view('index',$data);
+		$this->load->view('footer');
+	}
 
+	public function loadData(){
+		$data['fecha_hoy'] = $this->mttos_util->utilidades->getFechaHoy();
+		
 		//Equipos
 		$data['equipos'] = $this->getEquipos();
-
+		
 		//Mantenimientos
 		$data['mantenimientos'] = $this->getMantenimientos();
-
+		
 		//Auxiliares
 		$data['edificios'] = $this->getEdificios();
 		$data['areas'] = $this->getAreas();
 		$data['marcas'] = $this->getMarcas();
 		$data['modelos'] = $this->getModelos();
 		$data['dispositivos'] = $this->getDispositivos();
-
+		
 		//Arrays
 		$data['antivirus'] = $this->mttos_util->utilidades->antivirus;
 		$data['sistema'] = $this->mttos_util->utilidades->sistema;
 		$data['personal'] = $this->mttos_util->utilidades->personal;
 		$data['ram'] = $this->mttos_util->utilidades->ram;
 		$data['disco'] = $this->mttos_util->utilidades->disco;
-
-		$this->load->view('header');
-		$this->load->view('index',$data);
-		$this->load->view('footer');
+		
+		return $data;
 	}
-
-
 
 	// *************************************************************************
 	// ***************************** ALTAS *************************************
@@ -189,10 +193,28 @@ class Mantenimientos extends CI_Controller {
 
 
 	// Equipos
+	public function editarEquipo($id=''){
+		$data = $this->loadData();
+		$data['id'] = $id;		
+		$equipo = $this->mttos_util->utilidades->getEquipo($id);
 
+		$data['responsable'] = $equipo['responsable'];
+		$this->load->view('header');
+		$this->load->view('editEquipo',$data);
+		$this->load->view('footer');
+	}
 
 	// Mantenimientos
-
+	public function editarMtto($id=''){
+		$data = $this->loadData();
+		$data['id'] = $id;		
+		$mtto = $this->mttos_util->utilidades->getMantenimiento($id);
+		
+		$data['tecnico'] = $mtto['tecnico'];
+		$this->load->view('header');
+		$this->load->view('editMtto',$data);
+		$this->load->view('footer');
+	}
 
 	// Auxiliares
 

@@ -5,6 +5,13 @@ body{
 /* -------------------------- */
 /* Caracteristicas de botones */
 /* -------------------------- */
+.editar-mtto,
+.editar-equipo,
+.borrar-mtto,
+.borrar-equipo{
+	cursor: pointer;
+}
+
 .mtto-boton{
 	padding: 1rem;
 	border: solid 1px #999;

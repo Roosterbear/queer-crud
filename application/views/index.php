@@ -312,11 +312,6 @@
           <th class="text-center">Eliminar</th>
         </tr>
 
-
-
-
-
-
         <?php $cuenta_equipos = 1; ?>
         <?php foreach($equipos as $e){ ?>
           <?php echo '<tr id="row-equipo-'.$e['id_equipo'].'">'; ?>
@@ -595,10 +590,8 @@
       <?php $contador++;} ?>
     </select>
     <br />
-
     <br />
 
-    <!-- Contenido de Mantenimientos -->
     <div id="tabla_bcc_mantenimientos">
       <table class="table table-stripped table-condensed table-bordered table-hover ">
         <tbody>
@@ -606,8 +599,9 @@
   		      <!-- id_mantenimiento - fecha - area - equipo - tecnico -->
             <th class="text-center">No.</th>
             <th class="text-center">Fecha</th>
-            <th class="text-center">Area</th>
             <th class="text-center">Equipo</th>
+            <th class="text-center">Responsable</th>
+            <th class="text-center">Area</th>
             <th class="text-center">Tecnico</th>
             <!-- Botones -->
             <th class="text-center">Editar</th>
@@ -619,8 +613,9 @@
             <?php echo '<tr id="row-mtto-'.$m['id_mantenimiento'].'">'; ?>
             <?php echo '<td>'.$cuenta_mantenimientos.'</td>'; ?>
             <td><?php echo $m['fecha'];?></td>
-            <td><?php echo $m['area'];?></td>
             <td><?php echo $m['equipo'];?></td>
+            <td><?php echo $m['responsable'];?></td>
+            <td><?php echo $m['area'];?></td>
             <td><?php echo $m['tecnico'];?></td>
             <!-- Botones -->
             <?php echo '<td id="editar-mtto-'.$m['id_mantenimiento'].'" class="text-center editar-mtto"><i class="fa fa-pencil fa-2x verde"/></i></td>'; ?>
@@ -630,7 +625,6 @@
           <?php } ?>
         </tbody>
       </table>
-      <!-- Fin Contenido Mantenimientos -->
     </div>
 
   </div>
@@ -758,6 +752,7 @@ var dire_agregar_mantenimientos = "<?=base_url()?>"+"index.php/Mantenimientos/al
 var dire_delete = "<?=base_url()?>"+"index.php/Mantenimientos/delete/";
 var dire_hay_mantenimientos = "<?=base_url()?>"+"index.php/Mantenimientos/hayMantenimientos/";
 var dire_descripcion_equipos = "<?=base_url()?>"+"index.php/Mantenimientos/getDescripcionEquipos/";
+
 
 var altas_active = true;
 var equipos_active =  false;

@@ -124,11 +124,17 @@ $(document).ready(function(){
     });
 
     $('#filtro_xarea_mtto_bcc').change(function(){
-      $('#tabla_bcc_mantenimientos').html('');
+      $.post(dire_get_mantenimientos,function(resp){
+        contenido = resp;
+        $('#tabla_bcc_mantenimientos').html(contenido);
+      });
     });
 
     $('#filtro_xtecnico_mtto_bcc').change(function(){
-      $('#tabla_bcc_mantenimientos').html('');
+      $.post(dire_get_mantenimientos,function(resp){
+        contenido = resp;
+        $('#tabla_bcc_mantenimientos').html(contenido);
+      });
     });
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -187,18 +193,14 @@ $(document).ready(function(){
       var id_label = this.id;
       var variables = id_label.split("-");
       var this_id = variables[2];
-      var this_btn = variables[1];
-      var this_action = variables[0];
-      alert("se va a "+this_action+" el elemento "+this_id+" de "+this_btn);
+      window.open('http://sito-misc.app.utags.edu.mx/mantenimientos/index.php/Mantenimientos/editarEquipo/'+this_id);
     });
 
     $('.editar-mtto').click(function(){
       var id_label = this.id;
       var variables = id_label.split("-");
       var this_id = variables[2];
-      var this_btn = variables[1];
-      var this_action = variables[0];
-      alert("se va a "+this_action+" el elemento "+this_id+" de "+this_btn);
+      window.open('http://sito-misc.app.utags.edu.mx/mantenimientos/index.php/Mantenimientos/editarMtto/'+this_id);
     });
 
 
