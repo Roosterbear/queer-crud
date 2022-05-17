@@ -412,21 +412,34 @@ class Utilidades
 		return $rs->getArray();
 	}
 
-	public function getEquipo($id){
+	public function getEquipoById($id){
 		global $DBSito;
 	
 		// id_equipo - equipo - inventario - responsable - area - nomenclatura
-		$sql = "select e.id_equipo
-				,m.descripcion_marca+' - '+mo.descripcion_modelo as equipo
-				,e.inventario
-				,e.responsable
-				,a.descripcion_area as area
-				,e.nomenclatura
-				from mtto_equipos e
-				inner join mtto_marcas m on m.id_marca = e.id_marca
-				inner join mtto_modelos mo on mo.id_modelo = e.id_modelo
-				inner join mtto_areas a on a.id_area = e.id_departamento
-				where id_equipo = ".$id;
+		$sql = "select me.id_equipo
+				,me.responsable
+				,me.id_departamento
+				,ma.descripcion_area
+				,me.id_marca
+				,mm.descripcion_marca
+				,me.id_modelo
+				,mmm.descripcion_modelo
+				,me.id_dispositivo
+				,md.descripcion_dispositivo
+				,me.sistema
+				,me.ram
+				,me.disco
+				,me.inventario
+				,me.observaciones
+				,me.antivirus
+				,me.direccion_ip
+				,me.nomenclatura
+				from mtto_equipos me
+				inner join mtto_areas ma on me.id_departamento = ma.id_area
+				inner join mtto_marcas mm on me.id_marca = mm.id_marca
+				inner join mtto_modelos mmm on me.id_modelo = mmm.id_modelo
+				inner join mtto_dispositivos md on me.id_dispositivo = md.id_dispositivo
+				where me.id_equipo = ".$id;
 	
 		$rs = $DBSito->Execute($sql);
 	
@@ -460,7 +473,7 @@ class Utilidades
 		return $rs->getArray();
 	}
 	
-	public function getMantenimiento($id){
+	public function getMantenimientoById($id){
 		global $DBSito;
 	
 		// id_mantenimiento - fecha - area - equipo - tecnico

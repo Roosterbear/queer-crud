@@ -20,6 +20,8 @@ class Mantenimientos extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	
+	// Función para cargar 
 	public function loadData(){
 		$data['fecha_hoy'] = $this->mttos_util->utilidades->getFechaHoy();
 		
@@ -196,9 +198,8 @@ class Mantenimientos extends CI_Controller {
 	public function editarEquipo($id=''){
 		$data = $this->loadData();
 		$data['id'] = $id;		
-		$equipo = $this->mttos_util->utilidades->getEquipo($id);
-
-		$data['responsable'] = $equipo['responsable'];
+		$data['equipo'] = $this->mttos_util->utilidades->getEquipoById($id);
+			
 		$this->load->view('header');
 		$this->load->view('editEquipo',$data);
 		$this->load->view('footer');
@@ -208,7 +209,7 @@ class Mantenimientos extends CI_Controller {
 	public function editarMtto($id=''){
 		$data = $this->loadData();
 		$data['id'] = $id;		
-		$mtto = $this->mttos_util->utilidades->getMantenimiento($id);
+		$mtto = $this->mttos_util->utilidades->getMantenimientoById($id);
 		
 		$data['tecnico'] = $mtto['tecnico'];
 		$this->load->view('header');

@@ -1,4 +1,4 @@
-<?php echo $tecnico?>
+
 
 <h1 id="form_space" class="centrado">
   <strong>Edicion de Mantenimientos</strong>

@@ -17,7 +17,7 @@
         <h3>
           <i class="fa fa-male gris"></i> Responsable
         </h3>
-          <input type="text" id="responsable" name="responsable" value="<?php echo $responsable?>" class="form-control" />
+          <input type="text" id="responsable" name="responsable" value="<?php echo $equipo['responsable']?>" class="form-control" />
       </div>
 
       <!-- Nomenclatura -->
@@ -25,7 +25,7 @@
         <h3>
           <i class="fa fa-list-alt gris"></i> Nomenclatura
         </h3>
-          <input type="text" id="nomenclatura" name="nomenclatura" value="" class="form-control" onkeyup="to_uppercase(this);"/>
+          <input type="text" id="nomenclatura" name="nomenclatura" value="<?php echo $equipo['nomenclatura']?>" class="form-control" onkeyup="to_uppercase(this);"/>
       </div>
 
       <!-- Departamento -->
@@ -33,13 +33,16 @@
         <h3>
           <i class="fa fa-suitcase gris"></i> Area / Departamento
         </h3>
+        <?php $select_area = ''; ?>
         <select id="departamento_equipo" name="departamento_equipo" class="form-control">
           <option value="0">Seleccione el departamento</option>
           <?php foreach ($areas as $a){ ?>
+
+          <?php $select_area = $equipo['id_departamento'] === $a['id_area']?'selected=\"selected\"':''; ?>
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
           <!-- Tabla Areas                                           -->
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-          <option value="<?php echo $a['id_area'];?>"><?php echo $a['descripcion_area'];?></option>
+          <option value="<?php echo $a['id_area'];?>" <?php echo $select_area;?>><?php echo $a['descripcion_area'];?></option>
         <?php } ?>
       </select>
       </div>
@@ -54,13 +57,15 @@
         <h3>
           <i class="fa fa-registered gris"></i> Marca
         </h3>
+        <?php $select_marca = ''; ?>
         <select id="marca" name="marca" class="form-control">
           <option value="0">Seleccione marca de equipo</option>
           <?php foreach ($marcas as $marca){ ?>
+            <?php $select_marca = $equipo['id_marca'] === $marca['id_marca']?'selected=\"selected\"':''; ?>
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
           <!-- Tabla Marcas                                          -->
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-          <option value="<?php echo $marca['id_marca'];?>"><?php echo $marca['descripcion_marca'];?></option>
+          <option value="<?php echo $marca['id_marca'];?>" <?php echo $select_marca;?>><?php echo $marca['descripcion_marca'];?></option>
           <?php } ?>
         </select>
       </div>
@@ -70,13 +75,15 @@
         <h3>
           <i class="fa fa-tag gris"></i> Modelo
         </h3>
+        <?php $select_modelo = ''; ?>
         <select id="modelo" name="modelo" class="form-control">
           <option value="0">Seleccione modelo de equipo</option>
           <?php foreach ($modelos as $modelo){ ?>
+            <?php $select_modelo = $equipo['id_modelo'] === $modelo['id_modelo']?'selected=\"selected\"':''; ?>
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
           <!-- Tabla Modelos                                         -->
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-          <option value="<?php echo $modelo['id_modelo'];?>"><?php echo $modelo['descripcion_modelo'];?></option>
+          <option value="<?php echo $modelo['id_modelo'];?>" <?php echo $select_modelo;?>><?php echo $modelo['descripcion_modelo'];?></option>
           <?php } ?>
         </select>
       </div>
@@ -86,13 +93,15 @@
         <h3>
           <i class="fa fa-power-off gris"></i> Dispositivo
         </h3>
+        <?php $select_dispositivo = ''; ?>
         <select id="dispositivo" name="dispositivo" class="form-control">
           <option value="0">Seleccione dispositivo</option>
           <?php foreach ($dispositivos as $d){ ?>
+            <?php $select_dispositivo = $equipo['id_dispositivo'] === $d['id_dispositivo']?'selected=\"selected\"':''; ?>
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
           <!-- Tabla Dispositivos                                    -->
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-          <option value="<?php echo $d['id_dispositivo'];?>"><?php echo $d['descripcion_dispositivo'];?></option>
+          <option value="<?php echo $d['id_dispositivo'];?>" <?php echo $select_dispositivo;?>><?php echo $d['descripcion_dispositivo'];?></option>
         <?php } ?>
         </select>
       </div>
@@ -107,13 +116,15 @@
         <h3>
           <i class="fa fa-windows gris"></i> Sistema Operativo
         </h3>
+        <?php $select_sistema = ''; ?>
         <select id="sistema" name="sistema" class="form-control">
           <option value="0">Seleccione Sistema Operativo</option>
           <?php foreach ($sistema as $s){ ?>
+            <?php $select_sistema = $equipo['sistema'] === $s?'selected=\"selected\"':''; ?>
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
           <!-- Array Sistema                                         -->
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-          <option value="<?php echo $s;?>"><?php echo $s;?></option>
+          <option value="<?php echo $s;?>" <?php echo $select_sistema;?>><?php echo $s;?></option>
           <?php } ?>
         </select>
       </div>
@@ -123,13 +134,15 @@
         <h3>
           <i class="fa fa-exchange gris"></i> RAM
         </h3>
+        <?php $select_ram = ''; ?>
         <select id="ram" name="ram" class="form-control">
           <option value="0">Seleccione cantidad de memoria RAM</option>
           <?php foreach($ram as $r){ ?>
+            <?php $select_ram = $equipo['ram'] === $r?'selected=\"selected\"':''; ?>
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
           <!-- Array Ram                                             -->
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-          <option value="<?php echo $r;?>"><?php echo $r;?></option>
+          <option value="<?php echo $r;?>" <?php echo $select_ram;?>><?php echo $r;?></option>
         <?php } ?>
         </select>
       </div>
