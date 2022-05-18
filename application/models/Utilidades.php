@@ -462,11 +462,8 @@ class Utilidades
 				inner join mtto_equipos e on mt.id_equipo = e.id_equipo
 				inner join mtto_marcas m on m.id_marca = e.id_marca
 				inner join mtto_modelos mo on mo.id_modelo = e.id_modelo
-				inner join mtto_areas a on a.id_area = e.id_departamento
+				inner join mtto_areas a on a.id_area = e.id_departamento				
 				";
-		
-		
-		$sql .= "";
 		
 		$rs = $DBSito->Execute($sql);
 	
@@ -488,10 +485,7 @@ class Utilidades
 				inner join mtto_marcas m on m.id_marca = e.id_marca
 				inner join mtto_modelos mo on mo.id_modelo = e.id_modelo
 				inner join mtto_areas a on a.id_area = e.id_departamento
-				where id_mantenimiento = ".$id;
-	
-	
-		$sql .= "";
+				where id_mantenimiento = ".$id;	
 	
 		$rs = $DBSito->Execute($sql);
 	

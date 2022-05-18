@@ -209,9 +209,8 @@ class Mantenimientos extends CI_Controller {
 	public function editarMtto($id=''){
 		$data = $this->loadData();
 		$data['id'] = $id;		
-		$mtto = $this->mttos_util->utilidades->getMantenimientoById($id);
-		
-		$data['tecnico'] = $mtto['tecnico'];
+		$data['mtto'] = $this->mttos_util->utilidades->getMantenimientoById($id);
+				
 		$this->load->view('header');
 		$this->load->view('editMtto',$data);
 		$this->load->view('footer');

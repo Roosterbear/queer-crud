@@ -152,13 +152,15 @@
         <h3>
           <i class="fa fa-spinner gris"></i> Disco Duro
         </h3>
+        <?php $select_disco = ''; ?>
         <select id="disco" name="disco" class="form-control">
           <option value="0">Seleccione capacidad de Disco Duro</option>
           <?php foreach($disco as $d){ ?>
+            <?php $select_disco = $equipo['disco'] === $d?'selected=\"selected\"':''; ?>
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
           <!-- Array Disco                                           -->
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-          <option value="<?php echo $d;?>"><?php echo $d;?></option>
+          <option value="<?php echo $d;?>" <?php echo $select_disco;?>><?php echo $d;?></option>
           <?php } ?>
         </select>
       </div>
@@ -173,7 +175,7 @@
         <h3>
           <i class="fa fa-check-circle gris"></i> No. de Inventario
         </h3>
-          <input type="text" id="inventario" name="inventario" value="" class="form-control" />
+          <input type="text" id="inventario" name="inventario" value="<?php echo $equipo['inventario'];?>" class="form-control" />
       </div>
     </div><!-- row4 Numero de Inventario-->
 
@@ -182,20 +184,22 @@
       <!-- Antivirus -->
       <div class="col-md-6">
         <h3><i class="fa fa-life-ring gris"></i> Antivirus / Firewall</h3>
+        <?php $select_antivirus = ''; ?>
         <select id="antivirus" name="antivirus" class="form-control">
           <option value="0">Seleccione Antivirus</option>
           <?php foreach ($antivirus as $a){ ?>
+            <?php $select_antivirus = $equipo['antivirus'] === $a?'selected=\"selected\"':''; ?>
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
           <!-- Array Antivirus                                       -->
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-          <option value="<?php echo $a;?>"><?php echo $a;?></option>
+          <option value="<?php echo $a;?>" <?php echo $select_antivirus;?>><?php echo $a;?></option>
         <?php } ?>
         </select>
       </div>
       <!-- Direccion IP -->
       <div class="col-md-6">
         <h3><i class="fa fa-terminal gris"></i> Direccion IP</h3>
-        <input type="text" class="form-control" id="direccion_ip">
+        <input type="text" class="form-control" id="direccion_ip" value="<?php echo $equipo['direccion_ip'];?>">
       </div>
     </div><!-- row5 Antivirus / Direccion IP-->
     <br>
@@ -208,7 +212,7 @@
       <div class="col-md-12">
         <h3>
           <i class="fa fa-commenting gris"></i> Observaciones
-          <textarea class="form-control" id="observaciones_equipo" rows="3"></textarea>
+          <textarea class="form-control" id="observaciones_equipo" rows="3"><?php echo $equipo['observaciones'];?></textarea>
         </h3>
       </div>
     </div><!-- row6 Observaciones equipo-->
@@ -225,11 +229,4 @@
       <div class="col-md-4"></div>
     </div><!-- row7 Boton Alta Equipos -->
   </div><!-- Alta de Equipos -->
-
-
-
-
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+  <div class="up5"></div>

@@ -21,10 +21,15 @@
       </div>
       <div class="col-md-4">
         <h3><i class="fa fa-calendar gris"></i> Fecha de Mantenimiento: </h3>
-        <input type="text" id="fecha_captura" name="fecha_captura" calendario value="<?php echo $fecha_hoy;?>" class="form-control" />
+        <input type="text" id="fecha_captura" name="fecha_captura" calendario value="<?php echo $mtto['fecha'] ?>" class="form-control" />
       </div>
     </div><!-- row1 Fecha-->
     <hr>
+
+
+<!-- TODO show selects of ID, and change them like "ALTAS" -->
+
+
 
     <div class="row">
       <!-- Departamento -->
