@@ -224,7 +224,7 @@
       <!-- Boton Altas Equipos -->
       <div class="col-md-4"></div>
       <div class="col-md-4 text-center">
-        <button id="btn_alta_equipo" class="mtto-boton fondo_verde mtto-boton-enviar">Enviar</button>
+        <button id="btn_editar_equipo" class="mtto-boton fondo_verde mtto-boton-enviar">Enviar</button>
       </div>
       <div class="col-md-4"></div>
     </div><!-- row7 Boton Alta Equipos -->

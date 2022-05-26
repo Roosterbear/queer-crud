@@ -478,13 +478,26 @@ class Utilidades
 				,mt.fecha_realizacion as fecha
 				,m.descripcion_marca+' - '+mo.descripcion_modelo as equipo
 				,e.responsable
+				,a.id_area as id_departamento
 				,a.descripcion_area as area
 				,mt.tecnico
+				,dm.formateo
+				,dm.temporales
+				,dm.defragmentacion
+				,dm.limpieza_aplicaciones
+				,dm.limpieza_equipo
+				,dm.limpieza_mouse
+				,dm.limpieza_teclado
+				,dm.cable_red_ok
+				,dm.acomodo_cables
+				,dm.platica_seguridad
+				,dm.observaciones
 				from mtto_mantenimientos mt
 				inner join mtto_equipos e on mt.id_equipo = e.id_equipo
 				inner join mtto_marcas m on m.id_marca = e.id_marca
 				inner join mtto_modelos mo on mo.id_modelo = e.id_modelo
 				inner join mtto_areas a on a.id_area = e.id_departamento
+				inner join mtto_detalles_mantenimiento dm on dm.id_detalle_mantenimiento = mt.id_detalle_mantenimiento
 				where id_mantenimiento = ".$id;	
 	
 		$rs = $DBSito->Execute($sql);
