@@ -187,7 +187,7 @@ $(document).ready(function(){
 
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // @@@@@@@@@@@@@@@@@@@@@@@@@ BOTONES DE CAMBIOS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // @@@@@@@@@@@@@@@@@@@@@@@@@ BOTONES DE EDITAR  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     $('.editar-equipo').click(function(){
       var id_label = this.id;
@@ -202,6 +202,31 @@ $(document).ready(function(){
       var this_id = variables[2];
       window.open('http://sito-misc.app.utags.edu.mx/mantenimientos/index.php/Mantenimientos/editarMtto/'+this_id);
     });
+
+
+
+
+    $('#btn_editar_equipo').click(function(){
+      var responsable = $('#responsable').val();
+      var departamento_equipo = $('#departamento_equipo').val();
+      var marca = $('#marca').val();
+      var modelo = $('#modelo').val();
+      var dispositivo = $('#dispositivo').val();
+      var sistema = $('#sistema').val();
+      var ram = $('#ram').val();
+      var disco = $('#disco').val();
+      var inventario = $('#inventario').val();
+      var antivirus = $('#antivirus').val();
+      var direccion_ip = $('#direccion_ip').val();
+      var observaciones = $('#observaciones_equipo').val();
+      var nomenclatura = $('#nomenclatura').val();
+
+
+      
+
+
+    });
+
 
 
 }); // Document Ready

@@ -6,7 +6,7 @@
 
 <div id="area_equipos" class="container">
 
-  <!-- @@@@@@@@@@@@@@@@@@@@@@ ALTAS Equipos @@@@@@@@@@@@@@@@@@@@@@ -->
+  <!-- @@@@@@@@@@@@@@@@@@@@@@ EDICION Equipos @@@@@@@@@@@@@@@@@@@@@@ -->
   <div id="equipos_edit_form">
 
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -230,3 +230,7 @@
     </div><!-- row7 Boton Alta Equipos -->
   </div><!-- Alta de Equipos -->
   <div class="up5"></div>
+  
+<script type="text/javascript">
+var dire_actualizar_equipos = "<?=base_url()?>"+"index.php/Mantenimientos/updateEquipo/";
+</script>

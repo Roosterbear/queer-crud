@@ -312,26 +312,37 @@ class Utilidades
 	
 	
 	// Equipos
-	public function cambioEquipos($campo, $valor){
+	public function cambioEquipos(){
 		global $DBSito;
-	
+		
+		if($_POST){
+			//$data = $_REQUEST('data');
+		}else{
+			return false;
+		}
+		
 		$sql = "";
 	
-		$rs = $DBSito->Execute($sql);
+		//$rs = $DBSito->Execute($sql);
 	
-		return $rs->getArray();
+		//return $rs->getArray();
+		return 'kaka';
+		
 	}
 	
 	// Mantenimientos
-	public function cambioMantenimientos($campo, $valor){
+	public function cambioMantenimientos($data){
 		global $DBSito;
 	
 		$sql = "";
 	
-		$rs = $DBSito->Execute($sql);
+		//$rs = $DBSito->Execute($sql);
 	
-		return $rs->getArray();
+		//return $rs->getArray();
 	}
+	
+	
+	
 	
 	// Auxiliares
 	public function cambioEdificios($campo, $valor){

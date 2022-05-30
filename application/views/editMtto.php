@@ -231,3 +231,8 @@
     </div><!-- row7 Boton Alta Mantenimientos -->
   </div>
   <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+
+<script type="text/javascript">
+  
+</script>

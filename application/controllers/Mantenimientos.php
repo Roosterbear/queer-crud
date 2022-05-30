@@ -204,6 +204,29 @@ class Mantenimientos extends CI_Controller {
 		$this->load->view('editEquipo',$data);
 		$this->load->view('footer');
 	}
+	
+	public function updateEquipo(){
+	
+	if($_POST){
+			$data['responsable'] = $_REQUEST['responsable'];
+			$data['departamento'] = $_REQUEST['departamento'];
+			$data['marca'] = $_REQUEST['marca'];
+			$data['modelo'] = $_REQUEST['modelo'];
+			$data['dispositivo'] = $_REQUEST['dispositivo'];
+			$data['sistema'] = $_REQUEST['sistema'];
+			$data['ram'] = $_REQUEST['ram'];
+			$data['disco'] = $_REQUEST['disco'];
+			$data['inventario'] = $_REQUEST['inventario'];
+			$data['antivirus'] = $_REQUEST['antivirus'];
+			$data['direccion_ip'] = $_REQUEST['direccion_ip'];
+			$data['observaciones'] = $_REQUEST['observaciones'];
+			$data['nomenclatura'] = $_REQUEST['nomenclatura'];
+		}else{
+			return false;
+		}
+				
+		echo $this->mttos_util->utilidades->cambioEquipos($data);
+	}
 
 	// Mantenimientos
 	public function editarMtto($id=''){
@@ -216,6 +239,10 @@ class Mantenimientos extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function updateMtto(){
+		
+	}
+	
 	// Auxiliares
 
 
