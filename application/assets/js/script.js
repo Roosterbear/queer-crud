@@ -23,7 +23,6 @@ $(document).ready(function(){
     $("#boton_bcc").click(function(){
       activar_boton_bcc();
       verificar();
-      //mensajeLobibox('error','Aun no esta listo');
     });
 
 
@@ -172,8 +171,6 @@ $(document).ready(function(){
       });
     });
 
-
-    //Ejm
     $('#eliminar').click(function(){
       var id = this.id;
       var part = id.split("-");
@@ -220,13 +217,6 @@ $(document).ready(function(){
       var direccion_ip = $('#direccion_ip').val();
       var observaciones = $('#observaciones_equipo').val();
       var nomenclatura = $('#nomenclatura').val();
-
-
-      
-
-
     });
-
-
 
 }); // Document Ready

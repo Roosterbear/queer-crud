@@ -238,6 +238,13 @@ class Mantenimientos extends CI_Controller {
 		$this->load->view('editMtto',$data);
 		$this->load->view('footer');
 	}
+	
+	
+	
+	
+	
+	
+	
 
 	public function updateMtto(){
 		
@@ -260,6 +267,24 @@ class Mantenimientos extends CI_Controller {
 		return $this->mttos_util->utilidades->getMantenimientos();
 	}
 
+	
+	
+	
+	
+	
+	
+	// Equipos
+	public function showEquipos(){
+		return $this->mttos_util->utilidades->getEquiposHTML();
+	}
+	// Mantenimientos
+	public function showMantenimientos(){
+		return $this->mttos_util->utilidades->getMantenimientosHTML();
+	}
+	
+	
+	
+	
 	
 	
 	// Auxiliares

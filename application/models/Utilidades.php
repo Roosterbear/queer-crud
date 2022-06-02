@@ -406,12 +406,13 @@ class Utilidades
 		global $DBSito;	
 		
 		// id_equipo - equipo - inventario - responsable - area - nomenclatura
-		$sql = "select e.id_equipo
+		$sql = "select e.id_equipo 
 				,m.descripcion_marca+' - '+mo.descripcion_modelo as equipo
 				,e.inventario
 				,e.responsable
 				,a.descripcion_area as area
 				,e.nomenclatura
+				
 				from mtto_equipos e
 				inner join mtto_marcas m on m.id_marca = e.id_marca
 				inner join mtto_modelos mo on mo.id_modelo = e.id_modelo
@@ -426,7 +427,6 @@ class Utilidades
 	public function getEquipoById($id){
 		global $DBSito;
 	
-		// id_equipo - equipo - inventario - responsable - area - nomenclatura
 		$sql = "select me.id_equipo
 				,me.responsable
 				,me.id_departamento
@@ -456,6 +456,39 @@ class Utilidades
 	
 		return $rs->fields;
 	}
+	
+	public function getEquiposHTML(){
+		$equipos = $this->getEquipos();
+		// id_equipo - equipo - inventario - responsable - area - nomenclatura
+		$html = '<table class="table table-stripped table-condensed table-bordered table-hover "><tbody><tr>';
+		$html .= '<th class="text-center">No.</th>';
+		$html .= '<th class="text-center">Equipo</th>';
+		$html .= '<th class="text-center">Inventario</th>';
+		$html .= '<th class="text-center">Responsable</th>';
+		$html .= '<th class="text-center">Area</th>';
+		$html .= '<th class="text-center">Nomenclatura</th>';
+		$html .= '<th class="text-center">Editar</th>';
+		$html .= '<th class="text-center">Eliminar</th><tbody></tr>';
+		
+		$cuenta_equipos = 0;
+		foreach($equipos as $e){
+			$html .= '<tr id="row-equipo-'.$e['id_equipo'].'">';
+			$html .= '<td>'.++$cuenta_equipos.'</td>';
+			$html .= '<td>'.$e['equipo'].'</td>';
+			$html .= '<td>'.$e['inventario'].'</td>';
+			$html .= '<td>'.$e['responsable'].'</td>';			
+			$html .= '<td>'.$e['area'].'</td>';			
+			$html .= '<td>'.$e['nomenclatura'].'</td>';			
+			$html .= '<td id="editar-equipo-'.$e['id_equipo'].'" class="text-center editar-equipo"><i class="fa fa-pencil fa-2x verde"/></i></td>';			
+			$html .= '<td id="borrar-equipo-'.$e['id_equipo'].'" class="text-center borrar-equipo"><i class="fa fa-times fa-2x rojo"/></i></td></tr>';
+
+		}
+		
+		$html .= '<table>';
+		echo $html;	
+	}
+	
+	
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
 	// Mantenimientos
@@ -463,7 +496,7 @@ class Utilidades
 		global $DBSito;
 	
 		// id_mantenimiento - fecha - area - equipo - tecnico
-		$sql = "select mt.id_mantenimiento
+		$sql = "select mt.id_mantenimiento 
 				,mt.fecha_realizacion as fecha				
 				,m.descripcion_marca+' - '+mo.descripcion_modelo as equipo
 				,e.responsable
@@ -483,8 +516,7 @@ class Utilidades
 	
 	public function getMantenimientoById($id){
 		global $DBSito;
-	
-		// id_mantenimiento - fecha - area - equipo - tecnico
+			
 		$sql = "select mt.id_mantenimiento
 				,mt.fecha_realizacion as fecha
 				,m.descripcion_marca+' - '+mo.descripcion_modelo as equipo
@@ -549,7 +581,14 @@ class Utilidades
         </tbody>
       </table>
 	*/
-		return 'probando...';	
+		$mantenimientos = $this->getMantenimientos();
+		$html = '';
+		
+		foreach($mantenimientos as $m){
+			$html .= $m['id_mantenimiento'].' ';
+			
+		}
+		echo $html;
 	}
 	
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

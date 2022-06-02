@@ -271,6 +271,8 @@
   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <div id="equipos_bcc_form" class="ocultar">
+    
+    <div id="area_dinamica_bcc_equipos"></div>
 
     <!-- Filtro por marca -->
     <h3>
@@ -295,42 +297,6 @@
       <?php } ?>
     </select>
     <br />
-
-    <br />
-    <table class="table table-stripped table-condensed table-bordered table-hover ">
-      <tbody>
-        <tr>
-          <!-- // equipo - inventario - responsable - area - nomenclatura -->
-          <th class="text-center">No.</th>
-          <th class="text-center">Equipo</th>
-          <th class="text-center">Inventario</th>
-          <th class="text-center">Persona</th>
-          <th class="text-center">Area</th>
-          <th class="text-center">Nomenclatura</th>
-          <!-- Botones -->
-          <th class="text-center">Editar</th>
-          <th class="text-center">Eliminar</th>
-        </tr>
-
-        <?php $cuenta_equipos = 1; ?>
-        <?php foreach($equipos as $e){ ?>
-          <?php echo '<tr id="row-equipo-'.$e['id_equipo'].'">'; ?>
-          <?php echo '<td>'.$cuenta_equipos.'</td>'; ?>
-          <td><?php echo $e['equipo'];?></td>
-          <td><?php echo $e['inventario'];?></td>
-          <td><?php echo $e['responsable'];?></td>
-          <td><?php echo $e['area'];?></td>
-          <td><?php echo $e['nomenclatura'];?></td>
-          <!-- Botones -->
-
-          <!-- TODO ponerle IDs a los botones para la accion -->
-          <?php echo '<td id="editar-equipo-'.$e['id_equipo'].'" class="text-center editar-equipo"><i class="fa fa-pencil fa-2x verde"/></i></td>'; ?>
-          <?php echo '<td id="borrar-equipo-'.$e['id_equipo'].'" class="text-center borrar-equipo"><i class="fa fa-times fa-2x rojo"/></i></td>'; ?>
-          <?php echo '</tr>'; ?>
-          <?php $cuenta_equipos++ ?>
-        <?php } ?>
-      </tbody>
-    </table>
 
 </div><!-- Equipos bcc -->
 
@@ -566,6 +532,10 @@
   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <div id="mantenimientos_bcc_form" class="ocultar">
 
+
+
+  <div id="area_dinamica_bcc_mttos"></div>
+
     <!-- Filtro por area -->
     <h3>
       <i class="fa fa-suitcase gris"></i> Filtrar por Area / Departamento
@@ -752,6 +722,8 @@ var dire_agregar_mantenimientos = "<?=base_url()?>"+"index.php/Mantenimientos/al
 var dire_delete = "<?=base_url()?>"+"index.php/Mantenimientos/delete/";
 var dire_hay_mantenimientos = "<?=base_url()?>"+"index.php/Mantenimientos/hayMantenimientos/";
 var dire_descripcion_equipos = "<?=base_url()?>"+"index.php/Mantenimientos/getDescripcionEquipos/";
+var dire_mostrar_equipos = "<?=base_url()?>"+"index.php/Mantenimientos/showEquipos"
+var dire_mostrar_mantenimientos = "<?=base_url()?>"+"index.php/Mantenimientos/showMantenimientos"
 
 
 var altas_active = true;

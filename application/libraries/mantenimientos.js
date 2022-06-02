@@ -37,17 +37,45 @@ default (black)
 }
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
   function verificar(){
     if((equipos_active) && (altas_active)){
       activarAltaEquipos();
     }else if((equipos_active) && (!altas_active)){
       activarBccEquipos();
+      desplegadoEquipos();
     }else if((!equipos_active) && (altas_active)){
       activarAltaMantenimientos();
     }else if((!equipos_active) && (!altas_active)){
       activarBccMantenimientos();
+      desplegadoMttos();
     }
   }
+
+  
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // @@@@@@@@@@@@@@@@@@@@@@@@@ DESPLEGADO EQUIPOS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    function desplegadoEquipos(){
+      $.post(dire_mostrar_equipos).done(function(data){
+        $('#area_dinamica_bcc_equipos').html(data);
+      });
+    }
+
+
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // @@@@@@@@@@@@@@@@@@@@@@ DESPLEGADO MANTENIMIENTOS @@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    function desplegadoMttos(){
+      $.post(dire_mostrar_mantenimientos).done(function(data){
+        $('#area_dinamica_bcc_mttos').html(data);
+      });
+    }
+
 
 
   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
