@@ -139,7 +139,7 @@ $(document).ready(function(){
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // @@@@@@@@@@@@@@@@@@@@@@@@@@ BOTONES DE BAJAS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    $('.borrar-equipo').click(function(){
+    $(document).on('click','.borrar-equipo',function(){
       var id_label = this.id;
       var variables = id_label.split("-");
       var this_id = variables[2];
@@ -149,7 +149,7 @@ $(document).ready(function(){
 
       //TODO Checar primero si hay mantenimientos con ese equipo
       $.post(dire_hay_mantenimientos,{id:this_id}).done(function(data){
-        //$('#row-mtto-'+this_id).fadeOut();
+        $('#row-mtto-'+this_id).fadeOut();
         if(data > 0){
           mensajeLobibox('error','Este equipo tiene registrado al menos un mantenimiento');
         }else{
@@ -160,7 +160,7 @@ $(document).ready(function(){
       });
     });
 
-    $('.borrar-mtto').click(function(){
+    $(document).on('click','.borrar-mtto',function(){
       var id_label = this.id;
       var variables = id_label.split("-");
       var this_id = variables[2];
@@ -171,7 +171,7 @@ $(document).ready(function(){
       });
     });
 
-    $('#eliminar').click(function(){
+    $(document).on('click','#eliminar',function(){
       var id = this.id;
       var part = id.split("-");
       id = res[1];
@@ -186,14 +186,14 @@ $(document).ready(function(){
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // @@@@@@@@@@@@@@@@@@@@@@@@@ BOTONES DE EDITAR  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    $('.editar-equipo').click(function(){
+    $(document).on('click','.editar-equipo',function(){
       var id_label = this.id;
       var variables = id_label.split("-");
       var this_id = variables[2];
       window.open('http://sito-misc.app.utags.edu.mx/mantenimientos/index.php/Mantenimientos/editarEquipo/'+this_id);
     });
 
-    $('.editar-mtto').click(function(){
+    $(document).on('click','.editar-mtto',function(){
       var id_label = this.id;
       var variables = id_label.split("-");
       var this_id = variables[2];

@@ -422,8 +422,34 @@ class Utilidades
 		$rs = $DBSito->Execute($sql);
 	
 		return $rs->getArray();
+	}	
+	
+	// Mantenimientos
+	public function getMantenimientos(){
+		global $DBSito;
+	
+		// id_mantenimiento - fecha - area - equipo - tecnico
+		$sql = "select mt.id_mantenimiento
+				,mt.fecha_realizacion as fecha
+				,m.descripcion_marca+' - '+mo.descripcion_modelo as equipo
+				,e.responsable
+				,a.descripcion_area as area
+				,mt.tecnico
+				from mtto_mantenimientos mt
+				inner join mtto_equipos e on mt.id_equipo = e.id_equipo
+				inner join mtto_marcas m on m.id_marca = e.id_marca
+				inner join mtto_modelos mo on mo.id_modelo = e.id_modelo
+				inner join mtto_areas a on a.id_area = e.id_departamento
+				";
+	
+		$rs = $DBSito->Execute($sql);
+	
+		return $rs->getArray();
 	}
-
+	
+	// --------------------------------------------------------------------
+	
+	// Equipo por ID
 	public function getEquipoById($id){
 		global $DBSito;
 	
@@ -457,63 +483,7 @@ class Utilidades
 		return $rs->fields;
 	}
 	
-	public function getEquiposHTML(){
-		$equipos = $this->getEquipos();
-		// id_equipo - equipo - inventario - responsable - area - nomenclatura
-		$html = '<table class="table table-stripped table-condensed table-bordered table-hover "><tbody><tr>';
-		$html .= '<th class="text-center">No.</th>';
-		$html .= '<th class="text-center">Equipo</th>';
-		$html .= '<th class="text-center">Inventario</th>';
-		$html .= '<th class="text-center">Responsable</th>';
-		$html .= '<th class="text-center">Area</th>';
-		$html .= '<th class="text-center">Nomenclatura</th>';
-		$html .= '<th class="text-center">Editar</th>';
-		$html .= '<th class="text-center">Eliminar</th><tbody></tr>';
-		
-		$cuenta_equipos = 0;
-		foreach($equipos as $e){
-			$html .= '<tr id="row-equipo-'.$e['id_equipo'].'">';
-			$html .= '<td>'.++$cuenta_equipos.'</td>';
-			$html .= '<td>'.$e['equipo'].'</td>';
-			$html .= '<td>'.$e['inventario'].'</td>';
-			$html .= '<td>'.$e['responsable'].'</td>';			
-			$html .= '<td>'.$e['area'].'</td>';			
-			$html .= '<td>'.$e['nomenclatura'].'</td>';			
-			$html .= '<td id="editar-equipo-'.$e['id_equipo'].'" class="text-center editar-equipo"><i class="fa fa-pencil fa-2x verde"/></i></td>';			
-			$html .= '<td id="borrar-equipo-'.$e['id_equipo'].'" class="text-center borrar-equipo"><i class="fa fa-times fa-2x rojo"/></i></td></tr>';
-
-		}
-		
-		$html .= '<table>';
-		echo $html;	
-	}
-	
-	
-	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-	
-	// Mantenimientos
-	public function getMantenimientos(){
-		global $DBSito;
-	
-		// id_mantenimiento - fecha - area - equipo - tecnico
-		$sql = "select mt.id_mantenimiento 
-				,mt.fecha_realizacion as fecha				
-				,m.descripcion_marca+' - '+mo.descripcion_modelo as equipo
-				,e.responsable
-				,a.descripcion_area as area
-				,mt.tecnico
-				from mtto_mantenimientos mt
-				inner join mtto_equipos e on mt.id_equipo = e.id_equipo
-				inner join mtto_marcas m on m.id_marca = e.id_marca
-				inner join mtto_modelos mo on mo.id_modelo = e.id_modelo
-				inner join mtto_areas a on a.id_area = e.id_departamento				
-				";
-		
-		$rs = $DBSito->Execute($sql);
-	
-		return $rs->getArray();
-	}
-	
+	// Mantenimiento por ID
 	public function getMantenimientoById($id){
 		global $DBSito;
 			
@@ -541,55 +511,76 @@ class Utilidades
 				inner join mtto_modelos mo on mo.id_modelo = e.id_modelo
 				inner join mtto_areas a on a.id_area = e.id_departamento
 				inner join mtto_detalles_mantenimiento dm on dm.id_detalle_mantenimiento = mt.id_detalle_mantenimiento
-				where id_mantenimiento = ".$id;	
+				where id_mantenimiento = ".$id;
 	
 		$rs = $DBSito->Execute($sql);
 	
 		return $rs->fields;
 	}
-	public function getMantenimientosHTML(){
+	
+	// --------------------------------------------------------------------
+	
+	public function getEquiposHTML(){
+		$equipos = $this->getEquipos();
+		// id_equipo - equipo - inventario - responsable - area - nomenclatura
+		$html = '<table class="table table-stripped table-condensed table-bordered table-hover "><tr>';
+		$html .= '<th class="text-center">No.</th>';
+		$html .= '<th class="text-center">Equipo</th>';
+		$html .= '<th class="text-center">Inventario</th>';
+		$html .= '<th class="text-center">Responsable</th>';
+		$html .= '<th class="text-center">Area</th>';
+		$html .= '<th class="text-center">Nomenclatura</th>';
+		$html .= '<th class="text-center">Editar</th>';
+		$html .= '<th class="text-center">Eliminar</th></tr>';
 		
-	/*
-		<table class="table table-stripped table-condensed table-bordered table-hover ">
-        <tbody>
-          <tr>
-  		      <!-- id_mantenimiento - fecha - area - equipo - tecnico -->
-            <th class="text-center">No.</th>
-            <th class="text-center">Fecha</th>
-            <th class="text-center">Area</th>
-            <th class="text-center">Equipo</th>
-            <th class="text-center">Tecnico</th>
-            <!-- Botones -->
-            <th class="text-center">Editar</th>
-            <th class="text-center">Eliminar</th>
-          </tr>
+		$cuenta_equipos = 0;
+		foreach($equipos as $e){
+			$html .= '<tr id="row-equipo-'.$e['id_equipo'].'">';
+			$html .= '<td>'.++$cuenta_equipos.'</td>';
+			$html .= '<td>'.$e['equipo'].'</td>';
+			$html .= '<td>'.$e['inventario'].'</td>';
+			$html .= '<td>'.$e['responsable'].'</td>';			
+			$html .= '<td>'.$e['area'].'</td>';			
+			$html .= '<td>'.$e['nomenclatura'].'</td>';			
+			$html .= '<td id="editar-equipo-'.$e['id_equipo'].'" class="text-center editar-equipo"><i class="fa fa-pencil fa-2x verde"/></i></td>';			
+			$html .= '<td id="borrar-equipo-'.$e['id_equipo'].'" class="text-center borrar-equipo"><i class="fa fa-times fa-2x rojo"/></i></td></tr>';
 
-          <?php $cuenta_mantenimientos = 1; ?>
-          <?php foreach($mantenimientos as $m){ ?>
-            <?php echo '<tr id="row-mtto-'.$m['id_mantenimiento'].'">'; ?>
-            <?php echo '<td>'.$cuenta_mantenimientos.'</td>'; ?>
-            <td><?php echo $m['fecha'];?></td>
-            <td><?php echo $m['area'];?></td>
-            <td><?php echo $m['equipo'];?></td>
-            <td><?php echo $m['tecnico'];?></td>
-            <!-- Botones -->
-            <?php echo '<td id="editar-mtto-'.$m['id_mantenimiento'].'" class="text-center editar-mtto"><i class="fa fa-pencil fa-2x verde"/></i></td>'; ?>
-            <?php echo '<td id="borrar-mtto-'.$m['id_mantenimiento'].'" class="text-center borrar-mtto"><i class="fa fa-times fa-2x rojo"/></i></td>'; ?>
-            <?php echo '</tr>'; ?>
-            <?php $cuenta_mantenimientos++ ?>
-          <?php } ?>
-        </tbody>
-      </table>
-	*/
-		$mantenimientos = $this->getMantenimientos();
-		$html = '';
-		
-		foreach($mantenimientos as $m){
-			$html .= $m['id_mantenimiento'].' ';
-			
 		}
+		
+		$html .= '<table>';
+		echo $html;	
+	}
+	
+	
+	
+	public function getMantenimientosHTML(){
+		$mantenimientos = $this->getMantenimientos();
+		//id_mantenimiento - fecha - area - equipo - tecnico
+		$html = '<table class="table table-stripped table-condensed table-bordered table-hover "><tr>';
+		$html .= '<th class="text-center">No.</th>';
+		$html .= '<th class="text-center">Fecha</th>';
+		$html .= '<th class="text-center">Area</th>';
+		$html .= '<th class="text-center">Equipo</th>';
+		$html .= '<th class="text-center">Responsable</th>';		
+		$html .= '<th class="text-center">Editar</th>';
+		$html .= '<th class="text-center">Eliminar</th></tr>';
+		
+		$cuenta_mttos = 0;
+		foreach($mantenimientos as $m){
+			$html .= '<tr id="row-mtto-'.$m['id_mantenimiento'].'">';
+			$html .= '<td>'.++$cuenta_mttos.'</td>';
+			$html .= '<td>'.$m['fecha'].'</td>';
+			$html .= '<td>'.$m['area'].'</td>';
+			$html .= '<td>'.$m['equipo'].'</td>';			
+			$html .= '<td>'.$m['responsable'].'</td>';								
+			$html .= '<td id="editar-mtto-'.$m['id_mantenimiento'].'" class="text-center editar-equipo"><i class="fa fa-pencil fa-2x verde"/></i></td>';			
+			$html .= '<td id="borrar-mtto-'.$m['id_mantenimiento'].'" class="text-center borrar-equipo"><i class="fa fa-times fa-2x rojo"/></i></td></tr>';				
+		}		
+
+		$html .= '<table>';
 		echo $html;
 	}
+	
 	
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
