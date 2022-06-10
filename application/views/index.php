@@ -8,7 +8,6 @@
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 
-
 <!-- @@@@@@@@@@@@ Menu Equipos / Mantenimientos @@@@@@@@@@-->
 
 <!-- Equipos / Mantenimientos -->
@@ -274,6 +273,10 @@
     
     <div id="area_dinamica_bcc_equipos"></div>
 
+    
+
+
+    <!-- TODO Aqui vamos a poder filtrar... -->
     <!-- Filtro por marca -->
     <h3>
       <i class="fa fa-registered gris"></i> Filtrar por Marca
@@ -561,42 +564,6 @@
     </select>
     <br />
     <br />
-
-    <div id="tabla_bcc_mantenimientos">
-      <table class="table table-stripped table-condensed table-bordered table-hover ">
-        <tbody>
-          <tr>
-  		      <!-- id_mantenimiento - fecha - area - equipo - tecnico -->
-            <th class="text-center">No.</th>
-            <th class="text-center">Fecha</th>
-            <th class="text-center">Equipo</th>
-            <th class="text-center">Responsable</th>
-            <th class="text-center">Area</th>
-            <th class="text-center">Tecnico</th>
-            <!-- Botones -->
-            <th class="text-center">Editar</th>
-            <th class="text-center">Eliminar</th>
-          </tr>
-
-          <?php $cuenta_mantenimientos = 1; ?>
-          <?php foreach($mantenimientos as $m){ ?>
-            <?php echo '<tr id="row-mtto-'.$m['id_mantenimiento'].'">'; ?>
-            <?php echo '<td>'.$cuenta_mantenimientos.'</td>'; ?>
-            <td><?php echo $m['fecha'];?></td>
-            <td><?php echo $m['equipo'];?></td>
-            <td><?php echo $m['responsable'];?></td>
-            <td><?php echo $m['area'];?></td>
-            <td><?php echo $m['tecnico'];?></td>
-            <!-- Botones -->
-            <?php echo '<td id="editar-mtto-'.$m['id_mantenimiento'].'" class="text-center editar-mtto"><i class="fa fa-pencil fa-2x verde"/></i></td>'; ?>
-            <?php echo '<td id="borrar-mtto-'.$m['id_mantenimiento'].'" class="text-center borrar-mtto"><i class="fa fa-times fa-2x rojo"/></i></td>'; ?>
-            <?php echo '</tr>'; ?>
-            <?php $cuenta_mantenimientos++ ?>
-          <?php } ?>
-        </tbody>
-      </table>
-    </div>
-
   </div>
 
 </div><!-- Terminacion area mantenimientos -->

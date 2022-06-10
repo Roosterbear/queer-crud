@@ -1,5 +1,7 @@
-<h1 id="form_space" class="centrado">
-  <strong>Edicion de Equipos</strong>
+<h1 class="marihuana"></h1>
+
+<h1 id="form_space" class="centrado titulo_edicion_equipos">
+  <strong>Edicion de Equipo <small id="id_equipo_individual" class="gris"><?php echo $id ?></small></strong>
   <br>
   <small>Universidad Tecnologica de Aguascalientes</small>
 </h1>
@@ -222,11 +224,14 @@
     <!-- row7 -->
     <div class="row up5">
       <!-- Boton Altas Equipos -->
-      <div class="col-md-4"></div>
+      <div class="col-md-2"></div>
       <div class="col-md-4 text-center">
-        <button id="btn_editar_equipo" class="mtto-boton fondo_verde mtto-boton-enviar">Enviar</button>
+        <button id="btn_editar_equipo" class="mtto-boton fondo_verde mtto-boton-enviar">Guardar</button>
       </div>
-      <div class="col-md-4"></div>
+      <div class="col-md-4 text-center">
+        <button id="btn_cerrar_editar_equipo" class="mtto-boton mtto-boton-enviar">Cerrar</button>
+      </div>
+      <div class="col-md-2"></div>
     </div><!-- row7 Boton Alta Equipos -->
   </div><!-- Alta de Equipos -->
   <div class="up5"></div>

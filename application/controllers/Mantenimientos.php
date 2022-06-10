@@ -21,6 +21,9 @@ class Mantenimientos extends CI_Controller {
 	}
 
 	
+	
+	
+	
 	// Función para cargar 
 	public function loadData(){
 		$data['fecha_hoy'] = $this->mttos_util->utilidades->getFechaHoy();
@@ -48,6 +51,10 @@ class Mantenimientos extends CI_Controller {
 		return $data;
 	}
 
+	
+	
+	
+	
 	// *************************************************************************
 	// ***************************** ALTAS *************************************
 	// *************************************************************************
@@ -156,6 +163,10 @@ class Mantenimientos extends CI_Controller {
 		echo $this->mttos_util->utilidades->altaAreas($descripcion, $edificio, $nomenclatura);
 	}
 
+	
+	
+	
+	
 	// *************************************************************************
 	// ****************************** BAJAS ************************************
 	// *************************************************************************
@@ -189,6 +200,9 @@ class Mantenimientos extends CI_Controller {
 	}
 
 
+	
+	
+	
 	// *************************************************************************
 	// ****************************** CAMBIOS **********************************
 	// *************************************************************************
@@ -207,27 +221,36 @@ class Mantenimientos extends CI_Controller {
 	
 	public function updateEquipo(){
 	
-	if($_POST){
-			$data['responsable'] = $_REQUEST['responsable'];
+		if($_POST){
+			$data['id'] = $_REQUEST['id'];
+			$data['responsable'] = $_REQUEST['responsable'];				
+			$data['nomenclatura'] = $_REQUEST['nomenclatura'];
 			$data['departamento'] = $_REQUEST['departamento'];
+			//
 			$data['marca'] = $_REQUEST['marca'];
 			$data['modelo'] = $_REQUEST['modelo'];
 			$data['dispositivo'] = $_REQUEST['dispositivo'];
+			//
 			$data['sistema'] = $_REQUEST['sistema'];
 			$data['ram'] = $_REQUEST['ram'];
 			$data['disco'] = $_REQUEST['disco'];
+			//
 			$data['inventario'] = $_REQUEST['inventario'];
 			$data['antivirus'] = $_REQUEST['antivirus'];
 			$data['direccion_ip'] = $_REQUEST['direccion_ip'];
-			$data['observaciones'] = $_REQUEST['observaciones'];
-			$data['nomenclatura'] = $_REQUEST['nomenclatura'];
+			$data['observaciones'] = $_REQUEST['observaciones'];		
+			
 		}else{
 			return false;
 		}
 				
-		echo $this->mttos_util->utilidades->cambioEquipos($data);
+		echo $this->mttos_util->utilidades->cambioEquipos($data)?'Equipo actualizado':'Error';
 	}
 
+	
+	// **************************************************************************
+	
+	
 	// Mantenimientos
 	public function editarMtto($id=''){
 		$data = $this->loadData();
@@ -239,21 +262,24 @@ class Mantenimientos extends CI_Controller {
 		$this->load->view('footer');
 	}
 	
-	
-	
-	
-	
-	
-	
-
 	public function updateMtto(){
+		if($_POST){
+			$data['responsable'] = $_REQUEST['responsable'];
+			
+		}else{
+			return false;
+		}
 		
+		echo $this->mttos_util->utilidades->cambioMantenimientos($data);
 	}
 	
 	// Auxiliares
 
 
 
+	
+	
+	
 	// *************************************************************************
 	// ****************************** DESPLEGADO *******************************
 	// *************************************************************************
@@ -267,12 +293,7 @@ class Mantenimientos extends CI_Controller {
 		return $this->mttos_util->utilidades->getMantenimientos();
 	}
 
-	
-	
-	
-	
-	
-	
+		
 	// Equipos
 	public function showEquipos(){
 		return $this->mttos_util->utilidades->getEquiposHTML();
@@ -281,9 +302,6 @@ class Mantenimientos extends CI_Controller {
 	public function showMantenimientos(){
 		return $this->mttos_util->utilidades->getMantenimientosHTML();
 	}
-	
-	
-	
 	
 	
 	

@@ -1,14 +1,12 @@
-
-
 <h1 id="form_space" class="centrado">
   <strong>Edicion de Mantenimientos</strong>
   <br>
   <small>Universidad Tecnologica de Aguascalientes</small>
 </h1>
 
-
 <div id="area_mantenimientos" class="container">
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+<!-- @@@@@@@@@@@@@@@@@@ EDICION Mantenimientos @@@@@@@@@@@@@@@@@@@@@@ -->
     <div id="mantenimientos_edit_form">
 
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -26,39 +24,12 @@
     </div><!-- row1 Fecha-->
     <hr>
 
+    <h1 class="gris"><strong>Area:</strong> <?php echo $mtto['area'];?></h1>
+    <h1 class="gris"><strong>Equipo:</strong> <?php echo $mtto['equipo'];?> <small><?php echo $mtto['sistema'];?></small></h1>
+    <h1 class="gris"><strong>Responsable:</strong> <?php echo $mtto['responsable'];?></h1>
+    
 
-<!-- TODO show selects of ID, and change them like "ALTAS" -->
-
-
-
-    <div class="row">
-      <!-- Departamento -->
-      <div class="col-md-12">
-        <h3>
-          <i class="fa fa-suitcase gris"></i> Area / Departamento
-        </h3>
-        <?php $select_area = ''; ?>
-        <select id="departamento_mtto" name="departamento_mtto" class="form-control">
-          <option value="0">Seleccione el departamento</option>
-          <?php foreach ($areas as $a){ ?>
-
-          <?php $select_area = $mtto['id_departamento'] === $a['id_area']?'selected=\"selected\"':''; ?>
-          <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-          <!-- Tabla Areas                                           -->
-          <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-          <option value="<?php echo $a['id_area'];?>" <?php echo $select_area;?>><?php echo $a['descripcion_area'];?></option>
-        <?php } ?>
-      </select>
-      </div>
-
-      <!-- Equipo -->
-      <div class="col-md-12" id="equipos_mtto_dc">
-
-        <!-- Contenido dinamico -->
-
-      </div>
-    </div>
-
+    
     <br>
     <div class="up5"></div>
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -223,16 +194,19 @@
 
     <!-- row7 -->
     <div class="row up5">
-      <div class="col-md-4"></div>
+      <div class="col-md-2"></div>
       <div class="col-md-4 text-center">
-        <button id="btn_editar_mantenimiento" class="mtto-boton fondo_verde mtto-boton-enviar">Enviar</button>
+        <button id="btn_editar_mantenimiento" class="mtto-boton fondo_verde mtto-boton-enviar">Guardar</button>
       </div>
-      <div class="col-md-4"></div>
+      <div class="col-md-4 text-center">
+        <button id="btn_cerrar_editar_mantenimiento" class="mtto-boton mtto-boton-enviar">Cerrar</button>
+      </div>
+      <div class="col-md-2"></div>
     </div><!-- row7 Boton Alta Mantenimientos -->
   </div>
   <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
-
+  <div class="up5"></div>
 <script type="text/javascript">
-  
+var dire_actualizar_mantenimientos = "<?=base_url()?>"+"index.php/Mantenimientos/updateMtto/";
 </script>

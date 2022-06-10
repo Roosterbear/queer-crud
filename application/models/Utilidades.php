@@ -312,21 +312,36 @@ class Utilidades
 	
 	
 	// Equipos
-	public function cambioEquipos(){
+	public function cambioEquipos($data){
 		global $DBSito;
 		
-		if($_POST){
-			//$data = $_REQUEST('data');
-		}else{
-			return false;
-		}
+		$id = $data['id'];
+		$responsable = $data['responsable'];				
+		$nomenclatura = $data['nomenclatura'];
+		$departamento = $data['departamento'];
+		//
+		$marca = $data['marca'];
+		$modelo = $data['modelo'];
+		$dispositivo = $data['dispositivo'];
+		//
+		$sistema = $data['sistema'];
+		$ram = $data['ram'];
+		$disco = $data['disco'];
+		//
+		$inventario = $data['inventario'];
+		$antivirus = $data['antivirus'];
+		$direccion_ip = $data['direccion_ip'];
+		$observaciones = $data['observaciones'];
 		
-		$sql = "";
+		$sql  = "update mtto_equipos set responsable = '{$responsable}', nomenclatura = '{$nomenclatura}', id_departamento = {$departamento}, ";
+		$sql .= "id_marca = {$marca}, id_modelo = {$modelo}, id_dispositivo = {$dispositivo}, sistema = '{$sistema}', ram = '{$ram}', disco = '{$disco}', ";
+		$sql .= "inventario = '{$inventario}', antivirus = '{$antivirus}', direccion_ip = '{$direccion_ip}', observaciones = '{$observaciones}' ";
+		$sql .= "where id_equipo = {$id}";
 	
-		//$rs = $DBSito->Execute($sql);
+		$rs = $DBSito->Execute($sql);
 	
-		//return $rs->getArray();
-		return 'kaka';
+		return true;
+		
 		
 	}
 	
@@ -489,10 +504,10 @@ class Utilidades
 			
 		$sql = "select mt.id_mantenimiento
 				,mt.fecha_realizacion as fecha
-				,m.descripcion_marca+' - '+mo.descripcion_modelo as equipo
-				,e.responsable
+				,m.descripcion_marca+' - '+mo.descripcion_modelo+' ['+e.inventario+']' as equipo
+				,e.responsable+' ['+e.nomenclatura+']' as responsable
 				,a.id_area as id_departamento
-				,a.descripcion_area as area
+				,ed.descripcion_edificio+' / '+descripcion_area as area
 				,mt.tecnico
 				,dm.formateo
 				,dm.temporales
@@ -505,11 +520,13 @@ class Utilidades
 				,dm.acomodo_cables
 				,dm.platica_seguridad
 				,dm.observaciones
+				,e.sistema
 				from mtto_mantenimientos mt
 				inner join mtto_equipos e on mt.id_equipo = e.id_equipo
 				inner join mtto_marcas m on m.id_marca = e.id_marca
 				inner join mtto_modelos mo on mo.id_modelo = e.id_modelo
 				inner join mtto_areas a on a.id_area = e.id_departamento
+				inner join mtto_edificios ed on ed.id_edificio = a.id_edificio
 				inner join mtto_detalles_mantenimiento dm on dm.id_detalle_mantenimiento = mt.id_detalle_mantenimiento
 				where id_mantenimiento = ".$id;
 	
@@ -542,7 +559,8 @@ class Utilidades
 			$html .= '<td>'.$e['responsable'].'</td>';			
 			$html .= '<td>'.$e['area'].'</td>';			
 			$html .= '<td>'.$e['nomenclatura'].'</td>';			
-			$html .= '<td id="editar-equipo-'.$e['id_equipo'].'" class="text-center editar-equipo"><i class="fa fa-pencil fa-2x verde"/></i></td>';			
+			$html .= '<td id="editar-equipo-'.$e['id_equipo'].'" class="text-center editar-equipo">';
+			$html .= '<i class="fa fa-pencil fa-2x verde"/></i></td>';			
 			$html .= '<td id="borrar-equipo-'.$e['id_equipo'].'" class="text-center borrar-equipo"><i class="fa fa-times fa-2x rojo"/></i></td></tr>';
 
 		}
@@ -573,8 +591,8 @@ class Utilidades
 			$html .= '<td>'.$m['area'].'</td>';
 			$html .= '<td>'.$m['equipo'].'</td>';			
 			$html .= '<td>'.$m['responsable'].'</td>';								
-			$html .= '<td id="editar-mtto-'.$m['id_mantenimiento'].'" class="text-center editar-equipo"><i class="fa fa-pencil fa-2x verde"/></i></td>';			
-			$html .= '<td id="borrar-mtto-'.$m['id_mantenimiento'].'" class="text-center borrar-equipo"><i class="fa fa-times fa-2x rojo"/></i></td></tr>';				
+			$html .= '<td id="editar-mtto-'.$m['id_mantenimiento'].'" class="text-center editar-mtto"><i class="fa fa-pencil fa-2x verde"/></i></td>';			
+			$html .= '<td id="borrar-mtto-'.$m['id_mantenimiento'].'" class="text-center borrar-mtto"><i class="fa fa-times fa-2x rojo"/></i></td></tr>';				
 		}		
 
 		$html .= '<table>';

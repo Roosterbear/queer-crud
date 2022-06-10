@@ -200,12 +200,12 @@ $(document).ready(function(){
       window.open('http://sito-misc.app.utags.edu.mx/mantenimientos/index.php/Mantenimientos/editarMtto/'+this_id);
     });
 
-
-
-
+    
     $('#btn_editar_equipo').click(function(){
+      var id = $('#id_equipo_individual').html();
       var responsable = $('#responsable').val();
-      var departamento_equipo = $('#departamento_equipo').val();
+      var nomenclatura = $('#nomenclatura').val();
+      var departamento = $('#departamento_equipo').val();
       var marca = $('#marca').val();
       var modelo = $('#modelo').val();
       var dispositivo = $('#dispositivo').val();
@@ -216,7 +216,59 @@ $(document).ready(function(){
       var antivirus = $('#antivirus').val();
       var direccion_ip = $('#direccion_ip').val();
       var observaciones = $('#observaciones_equipo').val();
-      var nomenclatura = $('#nomenclatura').val();
+      
+    
+      $.post(dire_actualizar_equipos,{id:id,
+                                      responsable:responsable,
+                                      nomenclatura:nomenclatura,
+                                      departamento:departamento,
+                                      marca:marca,
+                                      modelo:modelo,
+                                      dispositivo:dispositivo,
+                                      sistema:sistema,
+                                      ram:ram,
+                                      disco:disco,
+                                      inventario:inventario,
+                                      antivirus:antivirus,
+                                      direccion_ip:direccion_ip,
+                                      observaciones:observaciones
+                                      }, function(data){
+        $('#area_equipos').html('');
+        $('.titulo_edicion_equipos').html('');
+        $('.marihuana').html('<h1>'+data+'</h1><small>Cerrando ventana... </small>');
+        setTimeout(()=>{
+          window.close();
+          },2500);
+      });
+    
+          
+      });
+
+    $('#btn_cerrar_editar_equipo').click(function(){
+      setTimeout(()=>{
+        window.close();
+        },25);
     });
+  
+
+
+
+    $('#btn_editar_mantenimiento').click(function(){
+      var fecha = $('#fecha_captura').val();
+      
+      mensajeLobibox('success',fecha);
+      mensajeLobibox('info','Cerrando ventana');
+      setTimeout(()=>{
+        window.close();
+        },2500);
+    });
+
+    $('#btn_cerrar_editar_mantenimiento').click(function(){
+      setTimeout(()=>{
+        window.close();
+        },25);
+    });
+
+    
 
 }); // Document Ready
