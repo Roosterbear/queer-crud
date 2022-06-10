@@ -1,4 +1,6 @@
-<h1 id="form_space" class="centrado">
+<h1 class="texto_cerrando_mtto"></h1>
+
+<h1 id="form_space" class="centrado titulo_edicion_mttos">
   <strong>Edicion de Mantenimientos</strong>
   <br>
   <small>Universidad Tecnologica de Aguascalientes</small>
@@ -196,7 +198,8 @@
     <div class="row up5">
       <div class="col-md-2"></div>
       <div class="col-md-4 text-center">
-        <button id="btn_editar_mantenimiento" class="mtto-boton fondo_verde mtto-boton-enviar">Guardar</button>
+        
+      <button id="btn_editar_mantenimiento" class="mtto-boton fondo_verde mtto-boton-enviar">Guardar</button>
       </div>
       <div class="col-md-4 text-center">
         <button id="btn_cerrar_editar_mantenimiento" class="mtto-boton mtto-boton-enviar">Cerrar</button>

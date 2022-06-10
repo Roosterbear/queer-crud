@@ -1,4 +1,4 @@
-<h1 class="marihuana"></h1>
+<h1 class="texto_cerrando_equipo"></h1>
 
 <h1 id="form_space" class="centrado titulo_edicion_equipos">
   <strong>Edicion de Equipo <small id="id_equipo_individual" class="gris"><?php echo $id ?></small></strong>

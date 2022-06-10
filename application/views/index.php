@@ -270,38 +270,41 @@
   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <div id="equipos_bcc_form" class="ocultar">
-    
-    <div id="area_dinamica_bcc_equipos"></div>
-
-    
-
-
-    <!-- TODO Aqui vamos a poder filtrar... -->
-    <!-- Filtro por marca -->
+  
+    <!-- TODO --- Filtro por marca -->
     <h3>
       <i class="fa fa-registered gris"></i> Filtrar por Marca
     </h3>
     <select class="form-control" name="filtro_xmarca_equipo_bcc" id="filtro_xmarca_equipo_bcc">
       <option value="0">Selecciona una marca</option>
       <?php foreach($marcas as $m){ ?>
-          <option value="<?php echo $m['id_marca'];?>"><?php echo $m['descripcion_marca'];?></option>
-      <?php } ?>
-    </select>
-    <br />
+        <option value="<?php echo $m['id_marca'];?>"><?php echo $m['descripcion_marca'];?></option>
+        <?php } ?>
+      </select>
+      <br />
+      
+      <!-- TODO --- Filtro por area -->
+      <h3>
+        <i class="fa fa-suitcase gris"></i> Filtrar por Area / Departamento
+      </h3>
+      <select class="form-control" name="filtro_xarea_equipo_bcc" id="filtro_xarea_equipo_bcc">
+        <option value="0">Selecciona area</option>
+        <?php foreach($areas as $a){ ?>
+          <option value="<?php echo $a['id_area'];?>"><?php echo $a['descripcion_area'];?></option>
+          <?php } ?>
+        </select>
+        <br />
+        
+        <div class="up5"></div>
 
-    <!-- Filtro por area -->
-    <h3>
-      <i class="fa fa-suitcase gris"></i> Filtrar por Area / Departamento
-    </h3>
-    <select class="form-control" name="filtro_xarea_equipo_bcc" id="filtro_xarea_equipo_bcc">
-      <option value="0">Selecciona area</option>
-      <?php foreach($areas as $a){ ?>
-        <option value="<?php echo $a['id_area'];?>"><?php echo $a['descripcion_area'];?></option>
-      <?php } ?>
-    </select>
-    <br />
+        <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+        <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+        <div id="area_dinamica_bcc_equipos"></div>
+        <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+        <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
 
-</div><!-- Equipos bcc -->
+
+    </div><!-- Equipos bcc -->
 
 </div><!-- Terminacion area equipos -->
 
@@ -535,11 +538,7 @@
   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <div id="mantenimientos_bcc_form" class="ocultar">
 
-
-
-  <div id="area_dinamica_bcc_mttos"></div>
-
-    <!-- Filtro por area -->
+    <!-- TODO --- Filtro por area -->
     <h3>
       <i class="fa fa-suitcase gris"></i> Filtrar por Area / Departamento
     </h3>
@@ -551,7 +550,7 @@
     </select>
     <br />
 
-    <!-- Filtro por tecnico -->
+    <!-- TODO --- Filtro por tecnico -->
     <h3>
       <i class="fa fa-wrench gris"></i> Filtrar por Personal que lo elaboro:
     </h3>
@@ -563,6 +562,15 @@
       <?php $contador++;} ?>
     </select>
     <br />
+    
+    <div class="up5"></div>
+    
+    <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+    <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+    <div id="area_dinamica_bcc_mttos"></div>
+    <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+    <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+
     <br />
   </div>
 

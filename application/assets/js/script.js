@@ -123,17 +123,11 @@ $(document).ready(function(){
     });
 
     $('#filtro_xarea_mtto_bcc').change(function(){
-      $.post(dire_get_mantenimientos,function(resp){
-        contenido = resp;
-        $('#tabla_bcc_mantenimientos').html(contenido);
-      });
+      alert('Filtro por area mantenimiento');
     });
 
     $('#filtro_xtecnico_mtto_bcc').change(function(){
-      $.post(dire_get_mantenimientos,function(resp){
-        contenido = resp;
-        $('#tabla_bcc_mantenimientos').html(contenido);
-      });
+      alert('Filtro por tecnico mantenimiento');
     });
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -235,10 +229,10 @@ $(document).ready(function(){
                                       }, function(data){
         $('#area_equipos').html('');
         $('.titulo_edicion_equipos').html('');
-        $('.marihuana').html('<h1>'+data+'</h1><small>Cerrando ventana... </small>');
+        $('.texto_cerrando_equipo').html('<h1>'+data+'</h1><small>Cerrando ventana... </small>');
         setTimeout(()=>{
           window.close();
-          },2500);
+        },2500);
       });
     
           
@@ -251,13 +245,16 @@ $(document).ready(function(){
     });
   
 
+   
 
 
     $('#btn_editar_mantenimiento').click(function(){
       var fecha = $('#fecha_captura').val();
+      var tecnico = $('#elaboro').val();
       
-      mensajeLobibox('success',fecha);
-      mensajeLobibox('info','Cerrando ventana');
+      $('#area_mantenimientos').html('');
+      $('.titulo_edicion_mttos').html('');
+      $('.texto_cerrando_mtto').html('<h1>'+fecha+' '+tecnico+'</h1><small>Cerrando ventana... </small>');
       setTimeout(()=>{
         window.close();
         },2500);
