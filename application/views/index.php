@@ -499,9 +499,9 @@
       </div>
       <div class="col-md-4">
         <h3>
-          <i class="fa fa-wrench gris"></i> Personal que lo elaboro:
+          <i class="fa fa-wrench gris"></i> Tecnico que lo elaboro:
         </h3>
-        <select id="elaboro" name="elaboro" class="form-control">
+        <select id="tecnico" name="tecnico" class="form-control">
           <option value="0">Seleccione el personal</option>
           <?php foreach($personal as $p){ ?>
           <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -552,7 +552,7 @@
 
     <!-- TODO --- Filtro por tecnico -->
     <h3>
-      <i class="fa fa-wrench gris"></i> Filtrar por Personal que lo elaboro:
+      <i class="fa fa-wrench gris"></i> Filtrar por Tecnico que lo elaboro:
     </h3>
     <select class="form-control" name="filtro_xtecnico_mtto_bcc" id="filtro_xtecnico_mtto_bcc">
       <option value="0">Selecciona tecnico</option>

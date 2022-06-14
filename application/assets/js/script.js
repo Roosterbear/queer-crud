@@ -75,7 +75,7 @@ $(document).ready(function(){
       var platica_seguridad = $('#platica_seguridad').prop('checked')?1:0;
       var limpieza_teclado = $('#limpieza_teclado').prop('checked')?1:0;
       var observaciones = $('#observaciones').val();
-      var elaboro = $('#elaboro').val();
+      var tecnico = $('#tecnico').val();
 
       $.post(dire_agregar_mantenimientos,{fecha:fecha, id_area:id_area, id_equipo:id_equipo,
         formateo:formateo, temporales:temporales,
@@ -83,7 +83,7 @@ $(document).ready(function(){
         cable_red_ok:cable_red_ok, limpieza_equipo:limpieza_equipo,
         acomodo_cables:acomodo_cables, limpieza_mouse:limpieza_mouse,
         platica_seguridad:platica_seguridad, limpieza_teclado:limpieza_teclado,
-        observaciones:observaciones, elaboro:elaboro},
+        observaciones:observaciones, tecnico:tecnico},
         function(resp){
           if (resp){
             mensajeLobibox('info',"Mantenimiento dado de alta");
@@ -91,7 +91,7 @@ $(document).ready(function(){
             $('#departamento_mtto').val(0).prop('selected');
             $('#equipo_mtto').val(0).prop('selected');
             $('#observaciones').val('');
-            $('#elaboro').val(0).prop('selected');
+            $('#tecnico').val(0).prop('selected');
           }else{
             mensajeLobibox('error',"Algo salio mal, pero no se que es...");
           }
@@ -249,16 +249,46 @@ $(document).ready(function(){
 
 
     $('#btn_editar_mantenimiento').click(function(){
+      var id = $('#id_mtto_individual').html();
       var fecha = $('#fecha_captura').val();
-      var tecnico = $('#elaboro').val();
-      
-      $('#area_mantenimientos').html('');
-      $('.titulo_edicion_mttos').html('');
-      $('.texto_cerrando_mtto').html('<h1>'+fecha+' '+tecnico+'</h1><small>Cerrando ventana... </small>');
-      setTimeout(()=>{
-        window.close();
-        },2500);
-    });
+      var tecnico = $('#tecnico').val();
+      var formateo = $('#formateo').prop('checked')?1:0;
+      var temporales = $('#temporales').prop('checked')?1:0;
+      var defragmentacion = $('#defragmentacion').prop('checked')?1:0;
+      var limpieza_aplicaciones = $('#limpieza_aplicaciones').prop('checked')?1:0;
+      var cable_red_ok = $('#cable_red_ok').prop('checked')?1:0;
+      var limpieza_equipo = $('#limpieza_equipo').prop('checked')?1:0;
+      var acomodo_cables = $('#acomodo_cables').prop('checked')?1:0;
+      var limpieza_mouse = $('#limpieza_mouse').prop('checked')?1:0;
+      var platica_seguridad = $('#platica_seguridad').prop('checked')?1:0;
+      var limpieza_teclado = $('#limpieza_teclado').prop('checked')?1:0;
+      var observaciones = $('#observaciones').val();
+
+      $.post(dire_actualizar_mantenimientos,{ id:id,
+                                              fecha:fecha,
+                                              tecnico:tecnico,
+                                              formateo:formateo,
+                                              temporales:temporales,
+                                              defragmentacion:defragmentacion,
+                                              limpieza_aplicaciones:limpieza_aplicaciones,
+                                              cable_red_ok:cable_red_ok,
+                                              limpieza_equipo:limpieza_equipo,
+                                              acomodo_cables:acomodo_cables,
+                                              limpieza_mouse:limpieza_mouse,
+                                              platica_seguridad:platica_seguridad,
+                                              limpieza_teclado:limpieza_teclado,
+                                              observaciones:observaciones
+                                            }, function(data){
+
+                                              
+            $('#area_mantenimientos').html('');
+            $('.titulo_edicion_mttos').html('');
+            $('.texto_cerrando_mtto').html('<h1>'+data+'</h1><small>Cerrando ventana... </small>');
+            setTimeout(()=>{
+              window.close();
+            },2500);
+          }); //post
+      }); //click
 
     $('#btn_cerrar_editar_mantenimiento').click(function(){
       setTimeout(()=>{

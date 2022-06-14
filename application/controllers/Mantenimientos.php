@@ -100,7 +100,7 @@ class Mantenimientos extends CI_Controller {
 			$data['platica_seguridad'] = $_REQUEST['platica_seguridad'];
 			$data['limpieza_teclado'] = $_REQUEST['limpieza_teclado'];
 			$data['observaciones'] = $_REQUEST['observaciones'];
-			$data['elaboro'] = $_REQUEST['elaboro'];
+			$data['tecnico'] = $_REQUEST['tecnico'];
 		}else{
 			return false;
 		}
@@ -264,13 +264,30 @@ class Mantenimientos extends CI_Controller {
 	
 	public function updateMtto(){
 		if($_POST){
-			$data['responsable'] = $_REQUEST['responsable'];
+			$data['id'] = $_REQUEST['id'];
+			$data['fecha'] = $_REQUEST['fecha'];			
+			$data['tecnico'] = $_REQUEST['tecnico'];
+			$data['formateo'] = $_REQUEST['formateo'];
+			$data['temporales'] = $_REQUEST['temporales'];
+			$data['defragmentacion'] = $_REQUEST['defragmentacion'];
+			$data['limpieza_aplicaciones'] = $_REQUEST['limpieza_aplicaciones'];
+			$data['cable_red_ok'] = $_REQUEST['cable_red_ok'];
+			$data['limpieza_equipo'] = $_REQUEST['limpieza_equipo'];
+			$data['acomodo_cables'] = $_REQUEST['acomodo_cables'];
+			$data['limpieza_mouse'] = $_REQUEST['limpieza_mouse'];
+			$data['platica_seguridad'] = $_REQUEST['platica_seguridad'];
+			$data['limpieza_teclado'] = $_REQUEST['limpieza_teclado'];
+			$data['observaciones'] = $_REQUEST['observaciones'];			
 			
 		}else{
 			return false;
 		}
 		
-		echo $this->mttos_util->utilidades->cambioMantenimientos($data);
+		$mantenimiento_ok = ($this->mttos_util->utilidades->cambioMantenimientos($data));
+		
+		//echo $mantenimiento_ok?$mantenimiento_ok.' Mantenimiento actualizado':'Error';
+		echo $mantenimiento_ok?'Mantenimiento actualizado':'Error';
+		
 	}
 	
 	// Auxiliares

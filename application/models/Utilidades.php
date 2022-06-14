@@ -77,7 +77,7 @@ class Utilidades
 		$fecha = $data['fecha'];
 		$id_area = $data['id_area'];
 		$id_equipo = $data['id_equipo'];
-		$elaboro = $data['elaboro'];
+		$tecnico = $data['tecnico'];
 		
 		// Informacion para los detalles del mantenimiento
 		$formateo = $data['formateo'];
@@ -109,7 +109,7 @@ class Utilidades
 		$id_detalles_mantenimiento = $this->getUltimoDetalleMantenimiento();
 		
 		$sql = "insert into mtto_mantenimientos (id_equipo, fecha_realizacion, id_detalle_mantenimiento, tecnico) values
-				($id_equipo, '{$fecha}', $id_detalles_mantenimiento, '{$elaboro}')";
+				($id_equipo, '{$fecha}', $id_detalles_mantenimiento, '{$tecnico}')";
 	
 		$rs = $DBSito->Execute($sql);
 			
@@ -348,14 +348,40 @@ class Utilidades
 	// Mantenimientos
 	public function cambioMantenimientos($data){
 		global $DBSito;
+		
+		$id = $data['id'];
+		$fecha = $data['fecha'];		
+		$tecnico = $data['tecnico'];
+		
+		// Informacion para los detalles del mantenimiento
+		
+		$formateo = $data['formateo'];
+		$temporales = $data['temporales'];
+		$defragmentacion = $data['defragmentacion'];
+		$limpieza_aplicaciones = $data['limpieza_aplicaciones'];
+		$cable_red_ok = $data['cable_red_ok'];
+		$limpieza_equipo = $data['limpieza_equipo'];
+		$acomodo_cables = $data['acomodo_cables'];
+		$limpieza_mouse = $data['limpieza_mouse'];
+		$platica_seguridad = $data['platica_seguridad'];
+		$limpieza_teclado = $data['limpieza_teclado'];
+		$observaciones = $data['observaciones'];
+		
+		$sql  = "update mtto_mantenimientos set tecnico = '{$tecnico}', fecha_realizacion = '{$fecha}' ";
+		$sql .= "where id_mantenimiento = {$id}";		
 	
-		$sql = "";
-	
-		//$rs = $DBSito->Execute($sql);
-	
-		//return $rs->getArray();
+		$updated_mtto = $rs = $DBSito->Execute($sql);
+		
+		$sql  = "update mtto_detalles_mantenimiento set formateo = {$formateo} ";
+		//$sql .= "id_marca = {$marca}, id_modelo = {$modelo}, id_dispositivo = {$dispositivo}, sistema = '{$sistema}', ram = '{$ram}', disco = '{$disco}', ";
+		//$sql .= "inventario = '{$inventario}', antivirus = '{$antivirus}', direccion_ip = '{$direccion_ip}', observaciones = '{$observaciones}' ";
+		$sql .= "where id_detalle_mantenimiento = (select id_detalle_mantenimiento from mtto_mantenimientos where id_mantenimiento = {$id})";
+		
+		$updated_detalle_mtto = $DBSito->Execute($sql);
+			
+		$updated_mtto_ok = (($updated_mtto) && ($updated_detalle_mtto))?true:false;
+		return $updated_mtto_ok;
 	}
-	
 	
 	
 	

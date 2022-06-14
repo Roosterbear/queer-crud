@@ -1,7 +1,7 @@
 <h1 class="texto_cerrando_mtto"></h1>
 
 <h1 id="form_space" class="centrado titulo_edicion_mttos">
-  <strong>Edicion de Mantenimientos</strong>
+  <strong>Edicion de Mantenimientos <small id="id_mtto_individual" class="gris"><?php echo $id ?></small></strong>
   <br>
   <small>Universidad Tecnologica de Aguascalientes</small>
 </h1>
@@ -173,10 +173,10 @@
       </div>
       <div class="col-md-4">
         <h3>
-          <i class="fa fa-wrench gris"></i> Personal que lo elaboro:
+          <i class="fa fa-wrench gris"></i> Tecnico que lo elaboro:
         </h3>
         <?php $select_personal = ''; ?>
-        <select id="elaboro" name="elaboro" class="form-control">
+        <select id="tecnico" name="tecnico" class="form-control">
           <option value="0">Seleccione el personal</option>
           <?php foreach($personal as $p){ ?>
 
