@@ -285,7 +285,7 @@ class Mantenimientos extends CI_Controller {
 		
 		$mantenimiento_ok = ($this->mttos_util->utilidades->cambioMantenimientos($data));
 		
-		//echo $mantenimiento_ok?$mantenimiento_ok.' Mantenimiento actualizado':'Error';
+		//echo $mantenimiento_ok;
 		echo $mantenimiento_ok?'Mantenimiento actualizado':'Error';
 		
 	}

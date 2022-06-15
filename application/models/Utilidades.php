@@ -372,15 +372,17 @@ class Utilidades
 	
 		$updated_mtto = $rs = $DBSito->Execute($sql);
 		
-		$sql  = "update mtto_detalles_mantenimiento set formateo = {$formateo} ";
-		//$sql .= "id_marca = {$marca}, id_modelo = {$modelo}, id_dispositivo = {$dispositivo}, sistema = '{$sistema}', ram = '{$ram}', disco = '{$disco}', ";
-		//$sql .= "inventario = '{$inventario}', antivirus = '{$antivirus}', direccion_ip = '{$direccion_ip}', observaciones = '{$observaciones}' ";
+		$sql  = "update mtto_detalles_mantenimiento set formateo = {$formateo}";
+		$sql .= ", temporales = {$temporales}, defragmentacion = {$defragmentacion}, limpieza_aplicaciones = {$limpieza_aplicaciones}, cable_red_ok = {$cable_red_ok}";
+		$sql .= ", limpieza_equipo = {$limpieza_equipo}, acomodo_cables = {$acomodo_cables}, limpieza_mouse = {$limpieza_mouse}, platica_seguridad = {$platica_seguridad}";
+		$sql .= ", limpieza_teclado = {$limpieza_teclado}, observaciones = '{$observaciones}' ";
 		$sql .= "where id_detalle_mantenimiento = (select id_detalle_mantenimiento from mtto_mantenimientos where id_mantenimiento = {$id})";
 		
 		$updated_detalle_mtto = $DBSito->Execute($sql);
 			
 		$updated_mtto_ok = (($updated_mtto) && ($updated_detalle_mtto))?true:false;
 		return $updated_mtto_ok;
+		//return $sql;
 	}
 	
 	

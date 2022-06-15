@@ -286,7 +286,7 @@ $(document).ready(function(){
             $('.texto_cerrando_mtto').html('<h1>'+data+'</h1><small>Cerrando ventana... </small>');
             setTimeout(()=>{
               window.close();
-            },2500);
+            },1500);
           }); //post
       }); //click
 
