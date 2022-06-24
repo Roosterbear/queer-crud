@@ -54,6 +54,7 @@ $(document).ready(function(){
             }else{
               mensajeLobibox('info',"Equipo agregado satisfactoriamente");
               resetear_equipos();
+              desplegadoEquipos();
           }
         });
       });
@@ -92,6 +93,7 @@ $(document).ready(function(){
             $('#equipo_mtto').val(0).prop('selected');
             $('#observaciones').val('');
             $('#tecnico').val(0).prop('selected');
+            desplegadoMttos();
           }else{
             mensajeLobibox('error',"Algo salio mal, pero no se que es...");
           }
@@ -115,7 +117,8 @@ $(document).ready(function(){
     // +++++++++++++++++++++++++ FILTROS BCC +++++++++++++++++++++++++++++++++++++++
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     $('#filtro_xmarca_equipo_bcc').change(function(){
-      alert('Filtro por marca equipo');
+      var id_marca_filtro = $('#filtro_xmarca_equipo_bcc').val();
+      desplegadoEquiposPorMarca(id_marca_filtro);
     });
 
     $('#filtro_xarea_equipo_bcc').change(function(){
@@ -184,9 +187,10 @@ $(document).ready(function(){
       var id_label = this.id;
       var variables = id_label.split("-");
       var this_id = variables[2];
-      window.open('http://sito-misc.app.utags.edu.mx/mantenimientos/index.php/Mantenimientos/editarEquipo/'+this_id);
+      window.open('http://sito-misc.app.utags.edu.mx/mantenimientos/index.php/Mantenimientos/editarEquipo/'+this_id);            
     });
 
+    
     $(document).on('click','.editar-mtto',function(){
       var id_label = this.id;
       var variables = id_label.split("-");
@@ -212,40 +216,36 @@ $(document).ready(function(){
       var observaciones = $('#observaciones_equipo').val();
       
     
-      $.post(dire_actualizar_equipos,{id:id,
-                                      responsable:responsable,
-                                      nomenclatura:nomenclatura,
-                                      departamento:departamento,
-                                      marca:marca,
-                                      modelo:modelo,
-                                      dispositivo:dispositivo,
-                                      sistema:sistema,
-                                      ram:ram,
-                                      disco:disco,
-                                      inventario:inventario,
-                                      antivirus:antivirus,
-                                      direccion_ip:direccion_ip,
-                                      observaciones:observaciones
-                                      }, function(data){
-        $('#area_equipos').html('');
-        $('.titulo_edicion_equipos').html('');
-        $('.texto_cerrando_equipo').html('<h1>'+data+'</h1><small>Cerrando ventana... </small>');
-        setTimeout(()=>{
-          window.close();
-        },2500);
-      });
-    
-          
-      });
+        $.post(dire_actualizar_equipos,{id:id,
+                                        responsable:responsable,
+                                        nomenclatura:nomenclatura,
+                                        departamento:departamento,
+                                        marca:marca,
+                                        modelo:modelo,
+                                        dispositivo:dispositivo,
+                                        sistema:sistema,
+                                        ram:ram,
+                                        disco:disco,
+                                        inventario:inventario,
+                                        antivirus:antivirus,
+                                        direccion_ip:direccion_ip,
+                                        observaciones:observaciones
+                                        }, function(data){
+          $('#area_equipos').html('');
+          $('.titulo_edicion_equipos').html('');
+          $('.texto_cerrando_equipo').html('<h1>'+data+'</h1><small>Cerrando ventana... </small>');
+                                                    
+         
+          setTimeout(()=>{
+            window.close();
+          },1500);
+        }); //post
+      }); //click
 
     $('#btn_cerrar_editar_equipo').click(function(){
-      setTimeout(()=>{
         window.close();
-        },25);
     });
   
-
-   
 
 
     $('#btn_editar_mantenimiento').click(function(){
@@ -296,6 +296,4 @@ $(document).ready(function(){
         },25);
     });
 
-    
-
-}); // Document Ready
+  }); // Document Ready

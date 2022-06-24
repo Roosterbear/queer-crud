@@ -445,7 +445,7 @@ class Utilidades
 	// *************************************************************************
 	
 	// Equipos
-	public function getEquipos(){
+	public function getEquipos($filtro='', $marca=0){
 		global $DBSito;	
 		
 		// id_equipo - equipo - inventario - responsable - area - nomenclatura
@@ -459,12 +459,18 @@ class Utilidades
 				from mtto_equipos e
 				inner join mtto_marcas m on m.id_marca = e.id_marca
 				inner join mtto_modelos mo on mo.id_modelo = e.id_modelo
-				inner join mtto_areas a on a.id_area = e.id_departamento
+				inner join mtto_areas a on a.id_area = e.id_departamento 
 				";
 	
-		$rs = $DBSito->Execute($sql);
-	
-		return $rs->getArray();
+		if ($filtro===''){
+			$rs = $DBSito->Execute($sql);
+		}elseif($filtro=='marca'){
+			$sql .= " where m.id_marca = ".$marca;
+			$rs = $DBSito->Execute($sql);
+		}
+		
+		return $rs->getArray();		
+		
 	}	
 	
 	// Mantenimientos
@@ -565,8 +571,10 @@ class Utilidades
 	
 	// --------------------------------------------------------------------
 	
-	public function getEquiposHTML(){
-		$equipos = $this->getEquipos();
+	public function getEquiposHTML($filtro, $marca){
+		
+		$equipos = $this->getEquipos($filtro, $marca);
+		
 		// id_equipo - equipo - inventario - responsable - area - nomenclatura
 		$html = '<table class="table table-stripped table-condensed table-bordered table-hover "><tr>';
 		$html .= '<th class="text-center">No.</th>';
@@ -600,7 +608,9 @@ class Utilidades
 	
 	
 	public function getMantenimientosHTML(){
+		
 		$mantenimientos = $this->getMantenimientos();
+		
 		//id_mantenimiento - fecha - area - equipo - tecnico
 		$html = '<table class="table table-stripped table-condensed table-bordered table-hover "><tr>';
 		$html .= '<th class="text-center">No.</th>';

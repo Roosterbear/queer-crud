@@ -313,7 +313,17 @@ class Mantenimientos extends CI_Controller {
 		
 	// Equipos
 	public function showEquipos(){
-		return $this->mttos_util->utilidades->getEquiposHTML();
+		$filtro = '';
+		$marca = '';
+		$area = '';
+		
+		if($_POST){
+			$filtro = $_POST['filtro'];
+			$marca = $_POST['marca'];
+			
+			return $this->mttos_util->utilidades->getEquiposHTML($filtro, $marca);
+		}
+		return $this->mttos_util->utilidades->getEquiposHTML($filtro='',$marca=0);
 	}
 	// Mantenimientos
 	public function showMantenimientos(){

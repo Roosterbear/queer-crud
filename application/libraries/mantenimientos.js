@@ -64,7 +64,13 @@ default (black)
       });
     }
 
+    function desplegadoEquiposPorMarca(marca){
+      $.post(dire_mostrar_equipos,{filtro:'marca',marca:marca}).done(function(data){
+        $('#area_dinamica_bcc_equipos').html(data);
+      });
+    }
 
+    
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // @@@@@@@@@@@@@@@@@@@@@@ DESPLEGADO MANTENIMIENTOS @@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -75,7 +81,6 @@ default (black)
         $('#area_dinamica_bcc_mttos').html(data);
       });
     }
-
 
 
   // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

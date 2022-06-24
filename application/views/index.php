@@ -303,7 +303,7 @@
         <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
         <!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
 
-
+        
     </div><!-- Equipos bcc -->
 
 </div><!-- Terminacion area equipos -->
@@ -697,6 +697,7 @@ var dire_agregar_mantenimientos = "<?=base_url()?>"+"index.php/Mantenimientos/al
 var dire_delete = "<?=base_url()?>"+"index.php/Mantenimientos/delete/";
 var dire_hay_mantenimientos = "<?=base_url()?>"+"index.php/Mantenimientos/hayMantenimientos/";
 var dire_descripcion_equipos = "<?=base_url()?>"+"index.php/Mantenimientos/getDescripcionEquipos/";
+// Se ejecutan en application/libraries/mantenimientos.js
 var dire_mostrar_equipos = "<?=base_url()?>"+"index.php/Mantenimientos/showEquipos"
 var dire_mostrar_mantenimientos = "<?=base_url()?>"+"index.php/Mantenimientos/showMantenimientos"
 
