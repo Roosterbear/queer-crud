@@ -445,7 +445,7 @@ class Utilidades
 	// *************************************************************************
 	
 	// Equipos
-	public function getEquipos($filtro='', $marca=0){
+	public function getEquipos($filtro='', $marca=0, $area=0){
 		global $DBSito;	
 		
 		// id_equipo - equipo - inventario - responsable - area - nomenclatura
@@ -465,12 +465,19 @@ class Utilidades
 		if ($filtro===''){
 			$rs = $DBSito->Execute($sql);
 		}elseif($filtro=='marca'){
-			$sql .= " where m.id_marca = ".$marca;
+			$sql .= $marca > 0?" where m.id_marca = ".$marca:'';
+			$sql .= ($marca == 0 and $area > 0)?' where ':(($marca > 0 and $area > 0)?' and ':''); 
+			$sql .= $area > 0?' a.id_area = '.$area:'';
+			$rs = $DBSito->Execute($sql);
+		}elseif($filtro=='area'){
+			$sql .= $area > 0?" where a.id_area = ".$area:'';
+			$sql .= ($area == 0 and $marca > 0)?' where ':(($area > 0 and $marca > 0)?' and ':'');
+			$sql .= $marca > 0?' m.id_marca = '.$marca:'';
 			$rs = $DBSito->Execute($sql);
 		}
 		
-		return $rs->getArray();		
-		
+		return $rs->getArray();
+		//return $sql;
 	}	
 	
 	// Mantenimientos
@@ -571,9 +578,9 @@ class Utilidades
 	
 	// --------------------------------------------------------------------
 	
-	public function getEquiposHTML($filtro, $marca){
+	public function getEquiposHTML($filtro, $marca, $area){
 		
-		$equipos = $this->getEquipos($filtro, $marca);
+		$equipos = $this->getEquipos($filtro, $marca, $area);
 		
 		// id_equipo - equipo - inventario - responsable - area - nomenclatura
 		$html = '<table class="table table-stripped table-condensed table-bordered table-hover "><tr>';
@@ -602,7 +609,9 @@ class Utilidades
 		}
 		
 		$html .= '<table>';
+		
 		echo $html;	
+		//echo $equipos;
 	}
 	
 	

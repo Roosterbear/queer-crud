@@ -64,12 +64,29 @@ default (black)
       });
     }
 
-    function desplegadoEquiposPorMarca(marca){
-      $.post(dire_mostrar_equipos,{filtro:'marca',marca:marca}).done(function(data){
+    function desplegadoEquiposPorMarca(marca, area){
+      $.post(dire_mostrar_equipos,{filtro:'marca',marca:marca, area:area}).done(function(data){
         $('#area_dinamica_bcc_equipos').html(data);
       });
     }
 
+    function desplegadoEquiposPorArea(marca, area){
+      $.post(dire_mostrar_equipos,{filtro:'area',marca:marca, area:area}).done(function(data){
+        $('#area_dinamica_bcc_equipos').html(data);
+      });
+    }
+
+    function desplegadoMttoPorArea(area, tecnico){
+      $.post(dire_mostrar_mantenimientos,{filtro:'area',area:area, tecnico:tecnico}).done(function(data){
+        $('#area_dinamica_bcc_mttos').html(data);
+      });
+    }
+
+    function desplegadoMttoPorTecnico(area, tecnico){
+      $.post(dire_mostrar_mantenimientos,{filtro:'tecnico',area:area, tecnico:tecnico}).done(function(data){
+        $('#area_dinamica_bcc_mttos').html(data);
+      });
+    }
     
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

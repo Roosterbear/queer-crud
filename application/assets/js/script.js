@@ -116,21 +116,33 @@ $(document).ready(function(){
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // +++++++++++++++++++++++++ FILTROS BCC +++++++++++++++++++++++++++++++++++++++
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    var id_marca_filtro = 0;
+    var id_area_filtro = 0;
+    var id_area_filtro_mtto = 0;
+    var tecnico_filtro = '';
+
     $('#filtro_xmarca_equipo_bcc').change(function(){
-      var id_marca_filtro = $('#filtro_xmarca_equipo_bcc').val();
-      desplegadoEquiposPorMarca(id_marca_filtro);
+      id_marca_filtro = $('#filtro_xmarca_equipo_bcc').val();
+      id_area_filtro = $('#filtro_xarea_equipo_bcc').val();
+      desplegadoEquiposPorMarca(id_marca_filtro, id_area_filtro);
     });
 
     $('#filtro_xarea_equipo_bcc').change(function(){
-      alert('Filtro por area equipo');
+      id_marca_filtro = $('#filtro_xmarca_equipo_bcc').val();
+      id_area_filtro = $('#filtro_xarea_equipo_bcc').val();
+      desplegadoEquiposPorArea(id_marca_filtro, id_area_filtro);
     });
 
     $('#filtro_xarea_mtto_bcc').change(function(){
-      alert('Filtro por area mantenimiento');
+      id_area_filtro_mtto = $('#filtro_xarea_mtto_bcc').val();
+      tecnico_filtro = $('#filtro_xtecnico_mtto_bcc option:selected').html();
+      desplegadoMttoPorArea(id_area_filtro_mtto, tecnico_filtro);
     });
 
     $('#filtro_xtecnico_mtto_bcc').change(function(){
-      alert('Filtro por tecnico mantenimiento');
+      id_area_filtro_mtto = $('#filtro_xarea_mtto_bcc').val();
+      tecnico_filtro = $('#filtro_xtecnico_mtto_bcc option:selected').html();
+      desplegadoMttoPorTecnico(id_area_filtro_mtto, tecnico_filtro);
     });
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

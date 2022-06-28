@@ -285,7 +285,7 @@ class Mantenimientos extends CI_Controller {
 		
 		$mantenimiento_ok = ($this->mttos_util->utilidades->cambioMantenimientos($data));
 		
-		//echo $mantenimiento_ok;
+		
 		echo $mantenimiento_ok?'Mantenimiento actualizado':'Error';
 		
 	}
@@ -314,17 +314,20 @@ class Mantenimientos extends CI_Controller {
 	// Equipos
 	public function showEquipos(){
 		$filtro = '';
-		$marca = '';
-		$area = '';
+		$marca = 0;
+		$area = 0;
 		
 		if($_POST){
 			$filtro = $_POST['filtro'];
 			$marca = $_POST['marca'];
+			$area = $_POST['area'];
 			
-			return $this->mttos_util->utilidades->getEquiposHTML($filtro, $marca);
+			return $this->mttos_util->utilidades->getEquiposHTML($filtro, $marca, $area);
 		}
-		return $this->mttos_util->utilidades->getEquiposHTML($filtro='',$marca=0);
+		return $this->mttos_util->utilidades->getEquiposHTML($filtro='',$marca=0, $area=0);
 	}
+	
+	
 	// Mantenimientos
 	public function showMantenimientos(){
 		return $this->mttos_util->utilidades->getMantenimientosHTML();
