@@ -58,7 +58,7 @@ $(document).ready(function(){
           }
         });
       });
-
+    
       // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
       $('#btn_alta_mantenimiento').click(function(){
