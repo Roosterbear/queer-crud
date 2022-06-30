@@ -480,8 +480,9 @@ class Utilidades
 		//return $sql;
 	}	
 	
+		
 	// Mantenimientos
-	public function getMantenimientos(){
+	public function getMantenimientos($filtro='', $area=0, $tecnico=''){
 		global $DBSito;
 	
 		// id_mantenimiento - fecha - area - equipo - tecnico
@@ -498,9 +499,23 @@ class Utilidades
 				inner join mtto_areas a on a.id_area = e.id_departamento
 				";
 	
-		$rs = $DBSito->Execute($sql);
+		if ($filtro===''){
+			$rs = $DBSito->Execute($sql);
+		}elseif($filtro=='area'){
+			$sql .= $area > 0?" where a.id_area = ".$area:"";
+			$sql .= ($area == 0 and $tecnico != "Selecciona tecnico")?" where ":(($area > 0 and $tecnico != "Selecciona tecnico")?" and ":""); 
+			$sql .= $tecnico != "Selecciona tecnico"?" mt.tecnico = '".$tecnico."'":'';
+			$rs = $DBSito->Execute($sql);
+		}elseif($filtro=='tecnico'){
+			$sql .= $tecnico != "Selecciona tecnico"?" where mt.tecnico = '".$tecnico."'":'';
+			$sql .= ($tecnico == "Selecciona tecnico" and $area > 0)?" where ":(($tecnico != "Selecciona tecnico" and $area > 0)?" and ":"");
+			$sql .= $area > 0?" a.id_area = ".$area:"";
+			$rs = $DBSito->Execute($sql);
+		}
 	
 		return $rs->getArray();
+		//return $sql;
+		
 	}
 	
 	// --------------------------------------------------------------------
@@ -616,9 +631,9 @@ class Utilidades
 	
 	
 	
-	public function getMantenimientosHTML(){
+	public function getMantenimientosHTML($filtro, $area, $tecnico){
 		
-		$mantenimientos = $this->getMantenimientos();
+		$mantenimientos = $this->getMantenimientos($filtro, $area, $tecnico);
 		
 		//id_mantenimiento - fecha - area - equipo - tecnico
 		$html = '<table class="table table-stripped table-condensed table-bordered table-hover "><tr>';
@@ -644,6 +659,7 @@ class Utilidades
 
 		$html .= '<table>';
 		echo $html;
+		//echo $mantenimientos;
 	}
 	
 	
@@ -671,14 +687,30 @@ class Utilidades
 		
 	}
 	
-	public function getModelos(){
+	public function getModelos($id){
 		global $DBSito;
 	
-		$sql = "select * from mtto_modelos";
+		$sql = "select * from mtto_modelos where id_marca = ".$id;
 	
 		$rs = $DBSito->Execute($sql);
 	
-		return $rs->getArray();
+		return $this->getHTMLModelos($rs->getArray(), $id);
+		
+	}
+	
+	public function getHTMLModelos($modelos, $id){
+		
+		$html = '<h3><i class="fa fa-tag gris"></i> Modelo</h3>';
+		$html .= '<select id="modelo" name="modelo" class="form-control"><option value="0">Seleccione el modelo del equipo</option>';
+		
+		if($id){
+			foreach($modelos as $m){
+				$html .= '<option value="'.$m['id_modelo'].'">'.$m['descripcion_modelo'].'</option>';
+			}	
+		}
+		$html .= '</select>';
+		return $html;
+		
 	}
 	
 	public function getMarcas(){

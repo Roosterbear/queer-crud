@@ -32,7 +32,7 @@ body{
 	background-color: #77D970;
 }
 
-.ocultar{
+.ocultar, #modelos_select{
 	display:none;
 }
 

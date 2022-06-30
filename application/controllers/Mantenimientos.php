@@ -38,7 +38,7 @@ class Mantenimientos extends CI_Controller {
 		$data['edificios'] = $this->getEdificios();
 		$data['areas'] = $this->getAreas();
 		$data['marcas'] = $this->getMarcas();
-		$data['modelos'] = $this->getModelos();
+		//$data['modelos'] = $this->getModelos($id=0);
 		$data['dispositivos'] = $this->getDispositivos();
 		
 		//Arrays
@@ -49,6 +49,16 @@ class Mantenimientos extends CI_Controller {
 		$data['disco'] = $this->mttos_util->utilidades->disco;
 		
 		return $data;
+	}
+	
+	
+	
+	public function getModelosByMarca(){
+		if($_POST){
+			echo $this->getModelos($_POST['marca']);
+		}else{
+			echo $this->getModelos(0);
+		}
 	}
 
 	
@@ -330,7 +340,19 @@ class Mantenimientos extends CI_Controller {
 	
 	// Mantenimientos
 	public function showMantenimientos(){
-		return $this->mttos_util->utilidades->getMantenimientosHTML();
+		$filtro = '';
+		$area = 0;
+		$tecnico = '';
+		
+		if($_POST){
+			$filtro = $_POST['filtro'];
+			$area = $_POST['area'];
+			$tecnico = $_POST['tecnico'];
+			
+			return $this->mttos_util->utilidades->getMantenimientosHTML($filtro, $area, $tecnico);
+		}
+		
+		return $this->mttos_util->utilidades->getMantenimientosHTML($filtro='', $area=0, $tecnico='');
 	}
 	
 	
@@ -344,8 +366,8 @@ class Mantenimientos extends CI_Controller {
 		return $this->mttos_util->utilidades->getAreas();
 	}
 
-	public function getModelos(){
-		return $this->mttos_util->utilidades->getModelos();
+	public function getModelos($id){
+		return $this->mttos_util->utilidades->getModelos($id);
 	}
 
 	public function getMarcas(){

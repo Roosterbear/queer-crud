@@ -62,43 +62,43 @@ $(document).ready(function(){
       // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
       $('#btn_alta_mantenimiento').click(function(){
-      var fecha = $('#fecha_captura').val();
-      var id_area = $('#departamento_mtto').val();
-      var id_equipo = $('#equipo_mtto').val();
-      var formateo = $('#formateo').prop('checked')?1:0;
-      var temporales = $('#temporales').prop('checked')?1:0;
-      var defragmentacion = $('#defragmentacion').prop('checked')?1:0;
-      var limpieza_aplicaciones = $('#limpieza_aplicaciones').prop('checked')?1:0;
-      var cable_red_ok = $('#cable_red_ok').prop('checked')?1:0;
-      var limpieza_equipo = $('#limpieza_equipo').prop('checked')?1:0;
-      var acomodo_cables = $('#acomodo_cables').prop('checked')?1:0;
-      var limpieza_mouse = $('#limpieza_mouse').prop('checked')?1:0;
-      var platica_seguridad = $('#platica_seguridad').prop('checked')?1:0;
-      var limpieza_teclado = $('#limpieza_teclado').prop('checked')?1:0;
-      var observaciones = $('#observaciones').val();
-      var tecnico = $('#tecnico').val();
+        var fecha = $('#fecha_captura').val();
+        var id_area = $('#departamento_mtto').val();
+        var id_equipo = $('#equipo_mtto').val();
+        var formateo = $('#formateo').prop('checked')?1:0;
+        var temporales = $('#temporales').prop('checked')?1:0;
+        var defragmentacion = $('#defragmentacion').prop('checked')?1:0;
+        var limpieza_aplicaciones = $('#limpieza_aplicaciones').prop('checked')?1:0;
+        var cable_red_ok = $('#cable_red_ok').prop('checked')?1:0;
+        var limpieza_equipo = $('#limpieza_equipo').prop('checked')?1:0;
+        var acomodo_cables = $('#acomodo_cables').prop('checked')?1:0;
+        var limpieza_mouse = $('#limpieza_mouse').prop('checked')?1:0;
+        var platica_seguridad = $('#platica_seguridad').prop('checked')?1:0;
+        var limpieza_teclado = $('#limpieza_teclado').prop('checked')?1:0;
+        var observaciones = $('#observaciones').val();
+        var tecnico = $('#tecnico').val();
 
-      $.post(dire_agregar_mantenimientos,{fecha:fecha, id_area:id_area, id_equipo:id_equipo,
-        formateo:formateo, temporales:temporales,
-        defragmentacion:defragmentacion, limpieza_aplicaciones:limpieza_aplicaciones,
-        cable_red_ok:cable_red_ok, limpieza_equipo:limpieza_equipo,
-        acomodo_cables:acomodo_cables, limpieza_mouse:limpieza_mouse,
-        platica_seguridad:platica_seguridad, limpieza_teclado:limpieza_teclado,
-        observaciones:observaciones, tecnico:tecnico},
-        function(resp){
-          if (resp){
-            mensajeLobibox('info',"Mantenimiento dado de alta");
-            //TODO resetear campos
-            $('#departamento_mtto').val(0).prop('selected');
-            $('#equipo_mtto').val(0).prop('selected');
-            $('#observaciones').val('');
-            $('#tecnico').val(0).prop('selected');
-            desplegadoMttos();
-          }else{
-            mensajeLobibox('error',"Algo salio mal, pero no se que es...");
-          }
+        $.post(dire_agregar_mantenimientos,{fecha:fecha, id_area:id_area, id_equipo:id_equipo,
+          formateo:formateo, temporales:temporales,
+          defragmentacion:defragmentacion, limpieza_aplicaciones:limpieza_aplicaciones,
+          cable_red_ok:cable_red_ok, limpieza_equipo:limpieza_equipo,
+          acomodo_cables:acomodo_cables, limpieza_mouse:limpieza_mouse,
+          platica_seguridad:platica_seguridad, limpieza_teclado:limpieza_teclado,
+          observaciones:observaciones, tecnico:tecnico},
+          function(resp){
+            if (resp){
+              mensajeLobibox('info',"Mantenimiento dado de alta");
+              //TODO resetear campos
+              $('#departamento_mtto').val(0).prop('selected');
+              $('#equipo_mtto').val(0).prop('selected');
+              $('#observaciones').val('');
+              $('#tecnico').val(0).prop('selected');
+              desplegadoMttos();
+            }else{
+              mensajeLobibox('error',"Algo salio mal, pero no se que es...");
+            }
+          });
         });
-      });
 
 
       $('#departamento_mtto').change(function(){
@@ -109,6 +109,15 @@ $(document).ready(function(){
           contenido = resp;
           $('#equipos_mtto_dc').html(contenido);
         });
+      });
+
+      $('#marca').change(function(){
+        var esta_marca = $('#marca').val();
+        $('#modelos_select').show();
+        $.post(dire_get_modelos_por_marca,{marca:esta_marca},function(resp){
+          $('#modelos_select').html(resp);
+        });
+        $('#modelos_borrar').hide();
       });
 
 
@@ -307,5 +316,5 @@ $(document).ready(function(){
         window.close();
         },25);
     });
-
+    
   }); // Document Ready

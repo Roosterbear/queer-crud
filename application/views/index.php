@@ -114,20 +114,17 @@
       </div>
 
       <!-- Modelo -->
-      <div class="col-md-4">
-        <h3>
-          <i class="fa fa-tag gris"></i> Modelo
-        </h3>
-        <select id="modelo" name="modelo" class="form-control">
-          <option value="0">Seleccione modelo de equipo</option>
-          <?php foreach ($modelos as $modelo){ ?>
-          <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-          <!-- Tabla Modelos                                         -->
-          <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-          <option value="<?php echo $modelo['id_modelo'];?>"><?php echo $modelo['descripcion_modelo'];?></option>
-          <?php } ?>
-        </select>
+      <div id="modelos_select" class="col-md-4"></div>
+      <div id="modelos_borrar" class="col-md-4">
+      <h3><i class="fa fa-tag gris"></i> Modelo</h3>
+      
+      <select id="modelo" name="modelo" class="form-control"><option value="0">Seleccione el modelo del equipo</option>
+      <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+      <!-- Tabla Dinamica de Modelos                             -->
+      <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+       </select>
       </div>
+
 
       <!-- Dispositivo -->
       <div class="col-md-4">
@@ -405,7 +402,7 @@
             <input type="checkbox" id="limpieza_aplicaciones" class="mtto-check" checked="checked">
             <span class="slider round"></span>
           </label>
-          <span class="labelSwitch"> Limpieza de aplicacion</span>
+          <span class="labelSwitch"> Limpieza de aplicaciones</span>
         </div>
 
         <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -698,12 +695,14 @@ var dire_delete = "<?=base_url()?>"+"index.php/Mantenimientos/delete/";
 var dire_hay_mantenimientos = "<?=base_url()?>"+"index.php/Mantenimientos/hayMantenimientos/";
 var dire_descripcion_equipos = "<?=base_url()?>"+"index.php/Mantenimientos/getDescripcionEquipos/";
 // Se ejecutan en application/libraries/mantenimientos.js
-var dire_mostrar_equipos = "<?=base_url()?>"+"index.php/Mantenimientos/showEquipos"
-var dire_mostrar_mantenimientos = "<?=base_url()?>"+"index.php/Mantenimientos/showMantenimientos"
-
+var dire_mostrar_equipos = "<?=base_url()?>"+"index.php/Mantenimientos/showEquipos";
+var dire_mostrar_mantenimientos = "<?=base_url()?>"+"index.php/Mantenimientos/showMantenimientos";
+var dire_get_modelos_por_marca = "<?=base_url()?>"+"index.php/Mantenimientos/getModelosByMarca";
 
 var altas_active = true;
 var equipos_active =  false;
 
 var contenido = '';
+
+var marca_del_equipo = 0;
 </script>
